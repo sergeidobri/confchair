@@ -1,0 +1,46 @@
+import styles from "./LoginForm.module.css";
+import { Input } from "../../../../components/ui/Input";
+import { Button } from "../../../../components/ui/Button";
+import { useLoginForm } from "../../hooks/useLoginForm";
+import FormField from "../../../../components/ui/FormField";
+
+export const LoginForm = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+    onSubmit,
+  } = useLoginForm();
+
+  return (
+    <form onSubmit={handleSubmit(onSubmit)} noValidate>
+      <FormField label="email" required={true}>
+        <Input
+          id="email"
+          type="email"
+          {...register("email")}
+          error={errors.email?.message}
+          disabled={isSubmitting}
+        />
+      </FormField>
+
+      <FormField label="password" required={true}>
+        <Input
+          id="password"
+          type="password"
+          {...register("password")}
+          error={errors.password?.message}
+          disabled={isSubmitting}
+        />
+      </FormField>
+
+      {errors.root && (
+        <div className={styles.formError}>{errors.root.message}</div>
+      )}
+
+      <Button type="submit" disabled={isSubmitting} isLoading={isSubmitting}>
+        Sign In
+      </Button>
+    </form>
+  );
+};

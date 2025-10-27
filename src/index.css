@@ -1,0 +1,45 @@
+@import "tailwindcss";
+
+:root {
+  font-size: 20px;
+  color: rgb(66, 71, 81);
+}
+
+body {
+  font-family: system-ui, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell,
+    Helvetica, Arial, "Helvetica Neue", sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100vh;
+  height: 100%;
+}
+
+main {
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  display: flex;
+}
+
+@media (max-width: 1168px) {
+  :root {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 639px) {
+  :root {
+    font-size: 17px;
+  }
+}
+
+@media (max-width: 400px) {
+  :root {
+    font-size: 16px;
+  }
+}

@@ -1,0 +1,41 @@
+.header {
+  margin-bottom: 40px;
+  box-shadow: rgba(129, 145, 181, 0.017) 0.29px 0.58px 3.48px 0px,
+    rgba(129, 145, 181, 0.024) 0.67px 1.34px 8.04px 0px,
+    rgba(129, 145, 181, 0.03) 1.25px 2.5px 15px 0px,
+    rgba(129, 145, 181, 0.036) 2.25px 4.5px 27px 0px,
+    rgba(129, 145, 181, 0.043) 4.17px 8.34px 50.04px 0px,
+    rgba(129, 145, 181, 0.06) 10px 20px 120px 0px,
+    rgba(129, 145, 181, 0.015) 0px 0px 0px 1.25px;
+  height: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.headerContent {
+  width: 80%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.logo {
+  margin: 16px;
+  max-width: 278px;
+  width: 100%;
+  display: none;
+}
+
+@media (max-width: 639px) {
+  .header {
+    height: auto;
+  }
+  .headerContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .logo {
+    display: block;
+  }
+}

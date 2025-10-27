@@ -1,0 +1,35 @@
+nav {
+  width: 100%;
+}
+
+.container {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+
+.link {
+  margin: 16px 0;
+  color: rgb(1, 114, 173);
+  text-decoration: none;
+}
+
+.mobileLink {
+  display: none;
+}
+
+.link:hover {
+  color: rgb(2, 101, 154);
+  text-decoration: underline;
+}
+
+@media (max-width: 639px) {
+  .container {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .mobileLink {
+    display: inline;
+  }
+}
