@@ -1,6 +1,7 @@
 .header {
   margin-bottom: 40px;
-  box-shadow: rgba(129, 145, 181, 0.017) 0.29px 0.58px 3.48px 0px,
+  box-shadow:
+    rgba(129, 145, 181, 0.017) 0.29px 0.58px 3.48px 0px,
     rgba(129, 145, 181, 0.024) 0.67px 1.34px 8.04px 0px,
     rgba(129, 145, 181, 0.03) 1.25px 2.5px 15px 0px,
     rgba(129, 145, 181, 0.036) 2.25px 4.5px 27px 0px,
@@ -25,6 +26,42 @@
   max-width: 278px;
   width: 100%;
   display: none;
+}
+
+nav {
+  width: 100%;
+}
+
+.container {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+
+.link {
+  padding: 16px 0;
+  color: rgb(1, 114, 173);
+  text-decoration: none;
+}
+
+.mobileLink {
+  display: none;
+}
+
+.link:hover {
+  color: rgb(2, 101, 154);
+  text-decoration: underline;
+}
+
+@media (max-width: 639px) {
+  .container {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .mobileLink {
+    display: inline;
+  }
 }
 
 @media (max-width: 639px) {

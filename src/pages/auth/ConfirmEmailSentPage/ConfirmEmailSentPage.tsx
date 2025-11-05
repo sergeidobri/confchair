@@ -10,7 +10,7 @@ const ConfirmEmailPage = () => {
       heading="Email sent!"
       description="A confirmation email has been sent to your address. Please check your inbox and follow the instructions to verify your account."
     >
-      <Button type="submit" onClick={() => navigate('auth/login')}>
+      <Button type="submit" onClick={() => navigate('/auth/login')}>
         Return
       </Button>
     </AuthWindow>

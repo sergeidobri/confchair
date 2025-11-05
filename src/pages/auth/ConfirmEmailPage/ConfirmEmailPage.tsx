@@ -1,7 +1,7 @@
-import { useEffect } from "react";
-import { useNavigate, useSearchParams } from "react-router";
-import { toast } from "react-toastify";
-import { authApi } from "../../../api/auth/api";
+import { useEffect } from 'react';
+import { useNavigate, useSearchParams } from 'react-router';
+import { toast } from 'react-toastify';
+import { authApi } from '../../../api/auth/api';
 
 const ConfirmEmailRoute = () => {
   const [searchParams] = useSearchParams();
@@ -9,38 +9,36 @@ const ConfirmEmailRoute = () => {
 
   useEffect(() => {
     const confirmEmail = async () => {
-      const token = searchParams.get("token");
+      const token = searchParams.get('token');
 
       if (!token) {
-        toast.error("Отсутствует токен подтверждения");
-        navigate("/auth/login");
+        toast.error('The token is absent');
+        navigate('/auth/login');
         return;
       }
 
       try {
         const response = await authApi.confirmEmail({ token });
         if (response.status === 200) {
-          toast.success("Почта успешно подтверждена!");
+          toast.success('The email was successfully confirmed!');
         } else {
-          toast.error("Неизвестная ошибка при подтверждении почты.");
+          toast.error('Unknown error while confirming email.');
         }
       } catch (error: any) {
         if (error.response?.status >= 400 && error.response?.status < 500) {
-          toast.error(
-            "Ошибка подтверждения почты. Ссылка недействительна или устарела."
-          );
+          toast.error('Error while confirming. The link is expired or invalid');
         } else {
-          toast.error("Произошла ошибка при подтверждении почты.");
+          toast.error('An error occured while confirming an email.');
         }
       } finally {
-        navigate("/auth/login");
+        navigate('/auth/login');
       }
     };
 
     confirmEmail();
   }, [searchParams, navigate]);
 
-  return <div>Подтверждение почты...</div>;
+  return <div>Confirming...</div>;
 };
 
 export default ConfirmEmailRoute;

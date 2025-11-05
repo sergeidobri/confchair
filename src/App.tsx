@@ -6,7 +6,10 @@ import { RegisterPage } from './pages/auth/RegisterPage/RegisterPage';
 import { ProtectedRoute } from './components/layout/ProtectedRoute';
 import { useEffect } from 'react';
 import { setNavigate } from './api/apiClient';
-import ConfirmEmailPage from './pages/auth/ConfirmEmailSentPage/ConfirmEmailSentPage';
+import ConfirmEmailSentPage from './pages/auth/ConfirmEmailSentPage/ConfirmEmailSentPage';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import ConfirmEmailPage from './pages/auth/ConfirmEmailPage/ConfirmEmailPage';
 
 function App() {
   const navigate = useNavigate();
@@ -19,6 +22,17 @@ function App() {
     <>
       <Header />
       <main>
+        <ToastContainer
+          position="top-right"
+          autoClose={3000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
         <Routes>
           <Route
             path="/"
@@ -30,7 +44,7 @@ function App() {
           />
           <Route path="/auth/login" element={<LoginPage />} />
           <Route path="/auth/register" element={<RegisterPage />} />
-          <Route path="/auth/confirm-email-sent" element={<ConfirmEmailPage />} />
+          <Route path="/auth/confirm-email-sent" element={<ConfirmEmailSentPage />} />
           <Route
             path="/auth/recover"
             element={
@@ -39,6 +53,7 @@ function App() {
               </ProtectedRoute>
             }
           ></Route>
+          <Route path="/auth/confirm-email" element={<ConfirmEmailPage />} />
         </Routes>
       </main>
       <Footer />
