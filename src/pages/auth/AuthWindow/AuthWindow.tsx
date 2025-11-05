@@ -1,12 +1,6 @@
-import React from "react";
 import styles from "./AuthWindow.module.css";
+import type { AuthWindowProps } from './auth-window.props';
 
-interface AuthWindowProps {
-  heading: string;
-  description: string;
-  children: React.ReactNode;
-  additionalInfo?: React.ReactNode;
-}
 
 export const AuthWindow = ({
   heading,

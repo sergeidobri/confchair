@@ -1,8 +1,8 @@
-import styles from "./LoginForm.module.css";
-import { Input } from "../../../../components/ui/Input";
-import { Button } from "../../../../components/ui/Button";
+import styles from "./Form.module.css";
+import { Input } from "../../../../components/ui/Input/Input";
+import { Button } from "../../../../components/ui/Button/Button";
 import { useLoginForm } from "../../hooks/useLoginForm";
-import FormField from "../../../../components/ui/FormField";
+import FormField from "../../../../components/ui/FormField/FormField";
 
 export const LoginForm = () => {
   const {
@@ -13,7 +13,7 @@ export const LoginForm = () => {
   } = useLoginForm();
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} noValidate>
+    <form onSubmit={handleSubmit(onSubmit)} noValidate className={styles['form']}>
       <FormField label="email" required={true}>
         <Input
           id="email"

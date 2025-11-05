@@ -1,15 +1,14 @@
 import Header from "./components/layout/Header/Header";
 import Footer from "./components/layout/Footer/Footer";
-import "./App.css";
-import { Routes, Route, useNavigate } from "react-router-dom";
-import { setNavigate } from "./utils/navigate";
-import { useEffect } from "react";
+import { Routes, Route, useNavigate } from "react-router";
 import { LoginPage } from "./pages/auth/LoginPage/LoginPage";
 import { RegisterPage } from "./pages/auth/RegisterPage/RegisterPage";
 import { ProtectedRoute } from "./components/layout/ProtectedRoute";
+import { useEffect } from 'react';
+import { setNavigate } from './api/apiClient';
 
 function App() {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
 
   useEffect(() => {
     setNavigate(navigate);

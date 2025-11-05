@@ -1,7 +1,7 @@
 import styles from "./RegisterPage.module.css";
-import { NavLink } from "react-router-dom";
+import { NavLink } from "react-router";
 import { AuthWindow } from "../AuthWindow/AuthWindow";
-import { RegisterForm } from "../../../features/auth/components/RegisterForm/RegisterForm";
+import { RegisterForm } from "../../../features/auth/components/Forms/RegisterForm";
 
 export const RegisterPage = () => {
   const additionalInfo = (

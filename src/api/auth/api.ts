@@ -1,4 +1,4 @@
-import apiClient from '../instance';
+import apiClient from '../apiClient';
 import { AUTH_ENDPOINTS } from './endpoints';
 import {
   type LoginRequest,
