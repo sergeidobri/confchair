@@ -1,3 +1,4 @@
+// eslint.config.js
 import js from '@eslint/js';
 import globals from 'globals';
 import reactHooks from 'eslint-plugin-react-hooks';
@@ -61,7 +62,9 @@ export default defineConfig([
       parser: await import('@typescript-eslint/parser').then(m => m.default),
       parserOptions: {
         ecmaFeatures: { jsx: true },
-        project: './tsconfig.json', // если используешь типизацию
+        project: './tsconfig.json',
+        projectService: true,
+        tsconfigRootDir: import.meta.dirname,
       },
       globals: {
         ...globals.browser,

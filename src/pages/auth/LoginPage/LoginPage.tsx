@@ -1,6 +1,6 @@
 import styles from "./LoginPage.module.css";
-import { LoginForm } from "../../../features/auth/components/LoginForm/LoginForm";
-import { NavLink } from "react-router-dom";
+import { LoginForm } from "../../../features/auth/components/Forms/LoginForm";
+import { NavLink } from "react-router";
 import { AuthWindow } from "../AuthWindow/AuthWindow";
 
 export const LoginPage = () => {

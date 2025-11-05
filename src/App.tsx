@@ -1,13 +1,20 @@
-import Header from "./components/layout/Header/Header";
-import Footer from "./components/layout/Footer/Footer";
-import "./App.css";
-import { Routes, Route } from "react-router-dom";
-import { LoginPage } from "./pages/auth/LoginPage/LoginPage";
-import { RegisterPage } from "./pages/auth/RegisterPage/RegisterPage";
-import { ProtectedRoute } from "./components/layout/ProtectedRoute";
-import ConfirmEmailPage from "./pages/auth/ConfirmEmailSentPage/ConfirmEmailSentPage";
+import Header from './components/layout/Header/Header';
+import Footer from './components/layout/Footer/Footer';
+import { Routes, Route, useNavigate } from 'react-router';
+import { LoginPage } from './pages/auth/LoginPage/LoginPage';
+import { RegisterPage } from './pages/auth/RegisterPage/RegisterPage';
+import { ProtectedRoute } from './components/layout/ProtectedRoute';
+import { useEffect } from 'react';
+import { setNavigate } from './api/apiClient';
+import ConfirmEmailPage from './pages/auth/ConfirmEmailSentPage/ConfirmEmailSentPage';
 
 function App() {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    setNavigate(navigate);
+  }, [navigate]);
+
   return (
     <>
       <Header />
@@ -23,10 +30,7 @@ function App() {
           />
           <Route path="/auth/login" element={<LoginPage />} />
           <Route path="/auth/register" element={<RegisterPage />} />
-          <Route
-            path="/auth/confirm-email-sent"
-            element={<ConfirmEmailPage />}
-          />
+          <Route path="/auth/confirm-email-sent" element={<ConfirmEmailPage />} />
           <Route
             path="/auth/recover"
             element={

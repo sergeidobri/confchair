@@ -1,7 +1,7 @@
-import styles from "./RegisterForm.module.css";
-import { Input } from "../../../../components/ui/Input";
-import FormField from "../../../../components/ui/FormField";
-import { Button } from "../../../../components/ui/Button";
+import styles from "./Form.module.css";
+import { Input } from "../../../../components/ui/Input/Input";
+import FormField from "../../../../components/ui/FormField/FormField";
+import { Button } from "../../../../components/ui/Button/Button";
 import { useRegisterForm } from "../../hooks/useRegisterForm";
 
 export const RegisterForm = () => {
@@ -13,7 +13,7 @@ export const RegisterForm = () => {
   } = useRegisterForm();
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} noValidate>
+    <form onSubmit={handleSubmit(onSubmit)} className={styles['form']} noValidate>
       <FormField label="Email" required>
         <Input
           id="email"

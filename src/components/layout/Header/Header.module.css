@@ -20,7 +20,8 @@
 }
 
 .logo {
-  margin: 16px;
+  /* margin: 16px; */
+  padding: 16px 8px;
   max-width: 278px;
   width: 100%;
   display: none;
@@ -28,7 +29,7 @@
 
 @media (max-width: 639px) {
   .header {
-    height: auto;
+    height: fit-content;
   }
   .headerContent {
     display: flex;

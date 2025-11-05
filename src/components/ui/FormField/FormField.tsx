@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
-import "./ui.css";
+import styles from './FormField.module.css';
+import cn from '../../../utils/classname-func';
 
 interface Props {
   label: string;
@@ -15,10 +16,12 @@ const FormField = ({
   children,
 }: Props) => {
   return (
-    <div className={`formField ${width == "half" ? "halfFormField" : ""}`}>
-      <label htmlFor={label} className="formFieldLabel">
+    <div className={cn(styles['formField'], {
+      [styles['halfFormField']]: width === 'half',
+    })}>
+      <label htmlFor={label} className={styles['formFieldLabel']}>
         {label}
-        {required && <span className="requiredStar">*</span>}
+        {required && <span className={styles['requiredStar']}>*</span>}
       </label>
       {children}
     </div>

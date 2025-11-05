@@ -1,0 +1,20 @@
+.formField {
+  margin-top: 10px;
+  width: 100%;
+  text-transform: capitalize;
+}
+
+.halfFormField {
+  width: 48%;
+}
+
+@media (max-width: 639px) {
+  .halfFormField {
+    width: 100%;
+  }
+}
+
+.requiredStar {
+  color: rgb(217, 53, 38);
+}
+

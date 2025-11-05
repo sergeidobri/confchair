@@ -1,14 +1,17 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 :root {
-  font-size: 20px;
-  color: rgb(66, 71, 81);
+  --font:
+    system-ui, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, Helvetica, Arial, 'Helvetica Neue',
+    sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  --text-title-color: #424751;
+  --text-color: #373c44;
+  --font-size: calc(0.36vw + 14.4px);
 }
 
 body {
-  font-family: system-ui, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell,
-    Helvetica, Arial, "Helvetica Neue", sans-serif, "Apple Color Emoji",
-    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-family: var(--font);
+  font-size: var(--font-size);
 }
 
 #root {
@@ -24,42 +27,4 @@ main {
   align-items: center;
   flex-direction: column;
   display: flex;
-}
-
-.window {
-  width: 50%;
-  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
-  padding: 1.5rem 4rem;
-}
-
-@media (max-width: 1168px) {
-  :root {
-    font-size: 18px;
-  }
-}
-
-@media (max-width: 639px) {
-  :root {
-    font-size: 17px;
-  }
-}
-
-@media (max-width: 400px) {
-  :root {
-    font-size: 16px;
-  }
-}
-
-@media (max-width: 1168px) {
-  .window {
-    width: 65%;
-    padding: 1.5rem 3rem;
-  }
-}
-
-@media (max-width: 639px) {
-  .window {
-    width: 90%;
-    padding: 1.5rem 2rem;
-  }
 }

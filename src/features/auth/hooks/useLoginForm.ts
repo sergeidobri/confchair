@@ -3,7 +3,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { loginSchema, type LoginFormData } from '../schemas/loginSchema';
 import { authApi } from '../../../api/auth/api';
 import { setAccessToken } from '../../../lib/auth';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 
 export const useLoginForm = () => {
   const navigate = useNavigate();

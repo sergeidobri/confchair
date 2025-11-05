@@ -1,0 +1,26 @@
+.input {
+  appearance: none;
+  width: 100%;
+  padding: 10px;
+  height: 50px;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  box-sizing: border-box;
+  display: inline-block;
+  background-color: rgb(251, 252, 252);
+  color: rgb(35, 38, 44);
+  border-radius: 0.25rem;
+  border-color: #cfd5e2;
+  border-width: 0.0625rem;
+}
+
+.input:active,
+.input:focus {
+  outline: rgba(93, 107, 137, 0.25);
+}
+
+.inputError {
+  color: rgb(136, 57, 53);
+  font-weight: 400;
+  font-size: 0.875rem;
+}
