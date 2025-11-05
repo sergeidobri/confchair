@@ -1,20 +1,13 @@
 import Header from "./components/layout/Header/Header";
 import Footer from "./components/layout/Footer/Footer";
 import "./App.css";
-import { Routes, Route, useNavigate } from "react-router-dom";
-import { setNavigate } from "./utils/navigate";
-import { useEffect } from "react";
+import { Routes, Route } from "react-router-dom";
 import { LoginPage } from "./pages/auth/LoginPage/LoginPage";
 import { RegisterPage } from "./pages/auth/RegisterPage/RegisterPage";
 import { ProtectedRoute } from "./components/layout/ProtectedRoute";
+import ConfirmEmailPage from "./pages/auth/ConfirmEmailSentPage/ConfirmEmailSentPage";
 
 function App() {
-  let navigate = useNavigate();
-
-  useEffect(() => {
-    setNavigate(navigate);
-  }, [navigate]);
-
   return (
     <>
       <Header />
@@ -30,6 +23,10 @@ function App() {
           />
           <Route path="/auth/login" element={<LoginPage />} />
           <Route path="/auth/register" element={<RegisterPage />} />
+          <Route
+            path="/auth/confirm-email-sent"
+            element={<ConfirmEmailPage />}
+          />
           <Route
             path="/auth/recover"
             element={

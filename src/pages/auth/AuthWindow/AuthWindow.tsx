@@ -15,7 +15,7 @@ export const AuthWindow = ({
   additionalInfo,
 }: AuthWindowProps) => {
   return (
-    <div className={styles.window}>
+    <div className="window">
       <h1 className={styles.heading}>{heading}</h1>
       <h2 className={styles.description}>{description}</h2>
       {children}

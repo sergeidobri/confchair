@@ -2,10 +2,11 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { loginSchema, type LoginFormData } from '../schemas/loginSchema';
 import { authApi } from '../../../api/auth/api';
-import { navigateTo } from '../../../utils/navigate';
 import { setAccessToken } from '../../../lib/auth';
+import { useNavigate } from 'react-router-dom';
 
 export const useLoginForm = () => {
+  const navigate = useNavigate();
 
   const form = useForm<LoginFormData>({
     resolver: zodResolver(loginSchema),  // validate
@@ -24,7 +25,7 @@ export const useLoginForm = () => {
 
       setAccessToken(response.data.accessToken);
 
-      navigateTo('/');
+      navigate('/');
     } catch (error: any) {
       const message = error.response?.data?.message || 'Incorrect email or password';
       form.setError('root', { message });

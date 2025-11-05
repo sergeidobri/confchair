@@ -5,4 +5,5 @@ export const AUTH_ENDPOINTS = {
   LOGOUT: '/api/auth/logout',
   EXIT: '/api/auth/exit',
   CHANGE_PASSWORD: '/api/auth/change-password',
+  CONFIRM_EMAIL: '/api/auth/confirm-email'
 } as const;

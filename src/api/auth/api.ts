@@ -1,6 +1,7 @@
 import apiClient from '../instance';
 import { AUTH_ENDPOINTS } from './endpoints';
 import {
+  type ConfirmEmailRequest,
   type LoginRequest,
   type RegisterRequest,
   type TokenResponse,
@@ -15,4 +16,7 @@ export const authApi = {
 
   refresh: () => 
     apiClient.get<TokenResponse>(AUTH_ENDPOINTS.REFRESH),
+
+  confirmEmail: (data: ConfirmEmailRequest) =>
+    apiClient.post(AUTH_ENDPOINTS.CONFIRM_EMAIL, data)
 };

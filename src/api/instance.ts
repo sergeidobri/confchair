@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { clearAccessToken, getAccessToken, setAccessToken } from '../lib/auth';
 import { authApi } from './auth/api';
-import { navigateTo } from '../utils/navigate';
+import { useNavigate } from 'react-router-dom';
 
 const apiClient = axios.create({
   baseURL: import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000',
@@ -26,6 +26,7 @@ apiClient.interceptors.response.use(
   (response) => response,  // 2xx
   async (error) => {       // 4xx
     const originalRequest = error.config;
+    const navigate = useNavigate();
 
     if (error.response?.status === 401 && !originalRequest._retry) {
       if (isRefreshing) {
@@ -52,7 +53,7 @@ apiClient.interceptors.response.use(
         return apiClient(originalRequest);
       } catch (refreshError) {
         clearAccessToken();
-        navigateTo("/auth/login");
+        navigate("/auth/login");
         return Promise.reject(refreshError);
       } finally {
         isRefreshing = false;
