@@ -2,7 +2,8 @@ import styles from './Header.module.css';
 import logo from '../../../assets/logo.png';
 import AuthNav from '../../navigation/AuthNav/AuthNav';
 import { isAuthenticated } from '../../../lib/auth';
-import { NavLink } from 'react-router';
+import { Link } from '@tanstack/react-router';
+import { Route as loginRoute } from '../../../routes/auth/login';
 
 const Header = () => {
   return (
@@ -15,14 +16,14 @@ const Header = () => {
           <nav className={styles.guestNav}>
             <ul className={styles.navList}>
               <li className={styles.navItem}>
-                <NavLink to="/author" className={styles.navLink}>
+                <Link to={loginRoute.to} className={styles.navLink}>
                   Author
-                </NavLink>
+                </Link>
               </li>
               <li className={styles.navItem}>
-                <NavLink to="/conferences" className={styles.navLink}>
+                <Link to={loginRoute.to} className={styles.navLink}>
                   Conferences
-                </NavLink>
+                </Link>
               </li>
             </ul>
           </nav>

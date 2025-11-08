@@ -3,11 +3,9 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { loginSchema, type LoginFormData } from '../schemas/loginSchema';
 import { authApi } from '../../../api/auth/api';
 import { setAccessToken } from '../../../lib/auth';
-import { useNavigate } from 'react-router';
+import { navigate } from '../../../utils/navigate';
 
 export const useLoginForm = () => {
-  const navigate = useNavigate();
-
   const form = useForm<LoginFormData>({
     resolver: zodResolver(loginSchema),  // validate
     defaultValues: {  // иначе будут undefined

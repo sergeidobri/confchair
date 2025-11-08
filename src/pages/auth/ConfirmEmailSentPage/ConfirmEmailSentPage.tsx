@@ -1,10 +1,8 @@
-import { useNavigate } from 'react-router';
 import { AuthWindow } from '../AuthWindow/AuthWindow';
 import { Button } from '../../../components/ui/Button/Button';
+import { navigate } from './../../../utils/navigate';
 
-const ConfirmEmailPage = () => {
-  const navigate = useNavigate();
-
+const ConfirmEmailSentPage = () => {
   return (
     <AuthWindow
       heading="Email sent!"
@@ -17,4 +15,4 @@ const ConfirmEmailPage = () => {
   );
 };
 
-export default ConfirmEmailPage;
+export default ConfirmEmailSentPage;

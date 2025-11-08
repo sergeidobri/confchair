@@ -5,15 +5,10 @@ import {
   setAccessToken,
 } from '../lib/auth';
 import { AUTH_ENDPOINTS } from './auth/endpoints';
+import { navigate } from '../utils/navigate';
 
 let isRefreshing = false;
 const failedQueue: ((token: string) => void)[] = [];
-
-let navigateFn: ((path: string) => void) | null = null;
-
-export const setNavigate = (navigate: (path: string) => void) => {
-  navigateFn = navigate;
-};
 
 const apiClient = axios.create({
   baseURL: import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000',
@@ -60,9 +55,7 @@ apiClient.interceptors.response.use(
         return apiClient(originalRequest);                             // Повторно отправляем наш начальный запрос, вызвавший смуту   
       } catch (refreshError) {
         clearAccessToken();
-        if (navigateFn) {
-          navigateFn('/auth/login');                                   // При неудаче, отправляем на страницу авторизации.
-        }
+          navigate('/auth/login');                                   // При неудаче, отправляем на страницу авторизации.
         return Promise.reject(refreshError);
       } finally {
         isRefreshing = false;

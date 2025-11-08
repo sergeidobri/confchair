@@ -1,23 +1,25 @@
-import styles from "./LoginPage.module.css";
-import { LoginForm } from "../../../features/auth/components/Forms/LoginForm";
-import { NavLink } from "react-router";
-import { AuthWindow } from "../AuthWindow/AuthWindow";
+import styles from './LoginPage.module.css';
+import { LoginForm } from '../../../features/auth/components/Forms/LoginForm';
+import { AuthWindow } from '../AuthWindow/AuthWindow';
+import { Route as loginRoute } from '../../../routes/auth/login';
+import { Route as registerRoute } from '../../../routes/auth/register';
+import { Link } from '@tanstack/react-router';
 
 export const LoginPage = () => {
   const additionalInfo = (
     <>
       <p>
-        Don't have an account?{" "}
-        <NavLink to="/auth/register" className={styles.link}>
+        Don't have an account?{' '}
+        <Link to={registerRoute.to} className={styles.link}>
           Sign up now
-        </NavLink>
+        </Link>
         .
       </p>
       <p>
-        Forgot password?{" "}
-        <NavLink to="/auth/recover" className={styles.link}>
+        Forgot password?{' '}
+        <Link to={loginRoute.to} className={styles.link}>
           Recover
-        </NavLink>
+        </Link>
         .
       </p>
     </>

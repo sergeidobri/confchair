@@ -1,16 +1,17 @@
-import styles from "./RegisterPage.module.css";
-import { NavLink } from "react-router";
-import { AuthWindow } from "../AuthWindow/AuthWindow";
-import { RegisterForm } from "../../../features/auth/components/Forms/RegisterForm";
+import styles from './RegisterPage.module.css';
+import { AuthWindow } from '../AuthWindow/AuthWindow';
+import { RegisterForm } from '../../../features/auth/components/Forms/RegisterForm';
+import { Route as loginRoute } from '../../../routes/auth/login';
+import { Link } from '@tanstack/react-router';
 
 export const RegisterPage = () => {
   const additionalInfo = (
     <>
       <p>
-        Already have an account?{" "}
-        <NavLink to="/auth/login" className={styles.link}>
+        Already have an account?{' '}
+        <Link to={loginRoute.to} className={styles.link}>
           Sign in now
-        </NavLink>
+        </Link>
         .
       </p>
     </>

@@ -1,12 +1,10 @@
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useNavigate } from 'react-router';
 import { registerSchema, type RegisterFormData } from '../schemas/registerSchema';
 import { authApi } from '../../../api/auth/api';
+import { navigate } from '../../../utils/navigate';
 
 export const useRegisterForm = () => {
-  const navigate = useNavigate();
-
   const form = useForm<RegisterFormData>({
     resolver: zodResolver(registerSchema),
     defaultValues: {

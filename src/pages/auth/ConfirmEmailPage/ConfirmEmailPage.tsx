@@ -1,15 +1,15 @@
 import { useEffect } from 'react';
-import { useNavigate, useSearchParams } from 'react-router';
 import { toast } from 'react-toastify';
 import { authApi } from '../../../api/auth/api';
+import { navigate } from '../../../utils/navigate';
+import { useSearch } from '@tanstack/react-router';
 
-const ConfirmEmailRoute = () => {
-  const [searchParams] = useSearchParams();
-  const navigate = useNavigate();
+const ConfirmEmailPage = () => {
+  const search = useSearch({ strict: false });
 
   useEffect(() => {
     const confirmEmail = async () => {
-      const token = searchParams.get('token');
+      const token = search.token;
 
       if (!token) {
         toast.error('The token is absent');
@@ -36,9 +36,9 @@ const ConfirmEmailRoute = () => {
     };
 
     confirmEmail();
-  }, [searchParams, navigate]);
+  }, [search, navigate]);
 
   return <div>Confirming...</div>;
 };
 
-export default ConfirmEmailRoute;
+export default ConfirmEmailPage;
