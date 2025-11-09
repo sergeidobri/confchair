@@ -2,8 +2,9 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { loginSchema, type LoginFormData } from '@features/auth/schemas/loginSchema';
 import { authApi } from '@api/auth/api';
-import { setAccessToken } from '@lib/auth';
 import { navigate } from '@utils/navigate';
+import { useAuthStore } from '@/store/authStore';
+
 
 export const useLoginForm = () => {
   const form = useForm<LoginFormData>({
@@ -21,7 +22,7 @@ export const useLoginForm = () => {
         password: data.password,
       });
 
-      setAccessToken(response.data.accessToken);
+      useAuthStore.getState().setAccessToken(response.data.accessToken);
 
       navigate('/');
     } catch (error: any) {

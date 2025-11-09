@@ -9,39 +9,71 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as CallForPapersRouteImport } from './routes/call-for-papers'
+import { Route as AuthorRouteImport } from './routes/author'
+import { Route as AuthRouteImport } from './routes/auth'
+import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthRegisterRouteImport } from './routes/auth/register'
 import { Route as AuthLoginRouteImport } from './routes/auth/login'
 import { Route as AuthConfirmEmailSentRouteImport } from './routes/auth/confirm-email-sent'
 import { Route as AuthConfirmEmailRouteImport } from './routes/auth/confirm-email'
 
-const AuthRegisterRoute = AuthRegisterRouteImport.update({
-  id: '/auth/register',
-  path: '/auth/register',
+const CallForPapersRoute = CallForPapersRouteImport.update({
+  id: '/call-for-papers',
+  path: '/call-for-papers',
   getParentRoute: () => rootRouteImport,
+} as any)
+const AuthorRoute = AuthorRouteImport.update({
+  id: '/author',
+  path: '/author',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthRegisterRoute = AuthRegisterRouteImport.update({
+  id: '/register',
+  path: '/register',
+  getParentRoute: () => AuthRoute,
 } as any)
 const AuthLoginRoute = AuthLoginRouteImport.update({
-  id: '/auth/login',
-  path: '/auth/login',
-  getParentRoute: () => rootRouteImport,
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => AuthRoute,
 } as any)
 const AuthConfirmEmailSentRoute = AuthConfirmEmailSentRouteImport.update({
-  id: '/auth/confirm-email-sent',
-  path: '/auth/confirm-email-sent',
-  getParentRoute: () => rootRouteImport,
+  id: '/confirm-email-sent',
+  path: '/confirm-email-sent',
+  getParentRoute: () => AuthRoute,
 } as any)
 const AuthConfirmEmailRoute = AuthConfirmEmailRouteImport.update({
-  id: '/auth/confirm-email',
-  path: '/auth/confirm-email',
-  getParentRoute: () => rootRouteImport,
+  id: '/confirm-email',
+  path: '/confirm-email',
+  getParentRoute: () => AuthRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
+  '/': typeof IndexRoute
+  '/auth': typeof AuthRouteWithChildren
+  '/author': typeof AuthorRoute
+  '/call-for-papers': typeof CallForPapersRoute
   '/auth/confirm-email': typeof AuthConfirmEmailRoute
   '/auth/confirm-email-sent': typeof AuthConfirmEmailSentRoute
   '/auth/login': typeof AuthLoginRoute
   '/auth/register': typeof AuthRegisterRoute
 }
 export interface FileRoutesByTo {
+  '/': typeof IndexRoute
+  '/auth': typeof AuthRouteWithChildren
+  '/author': typeof AuthorRoute
+  '/call-for-papers': typeof CallForPapersRoute
   '/auth/confirm-email': typeof AuthConfirmEmailRoute
   '/auth/confirm-email-sent': typeof AuthConfirmEmailSentRoute
   '/auth/login': typeof AuthLoginRoute
@@ -49,6 +81,10 @@ export interface FileRoutesByTo {
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
+  '/': typeof IndexRoute
+  '/auth': typeof AuthRouteWithChildren
+  '/author': typeof AuthorRoute
+  '/call-for-papers': typeof CallForPapersRoute
   '/auth/confirm-email': typeof AuthConfirmEmailRoute
   '/auth/confirm-email-sent': typeof AuthConfirmEmailSentRoute
   '/auth/login': typeof AuthLoginRoute
@@ -57,18 +93,30 @@ export interface FileRoutesById {
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
+    | '/'
+    | '/auth'
+    | '/author'
+    | '/call-for-papers'
     | '/auth/confirm-email'
     | '/auth/confirm-email-sent'
     | '/auth/login'
     | '/auth/register'
   fileRoutesByTo: FileRoutesByTo
   to:
+    | '/'
+    | '/auth'
+    | '/author'
+    | '/call-for-papers'
     | '/auth/confirm-email'
     | '/auth/confirm-email-sent'
     | '/auth/login'
     | '/auth/register'
   id:
     | '__root__'
+    | '/'
+    | '/auth'
+    | '/author'
+    | '/call-for-papers'
     | '/auth/confirm-email'
     | '/auth/confirm-email-sent'
     | '/auth/login'
@@ -76,50 +124,94 @@ export interface FileRouteTypes {
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
+  IndexRoute: typeof IndexRoute
+  AuthRoute: typeof AuthRouteWithChildren
+  AuthorRoute: typeof AuthorRoute
+  CallForPapersRoute: typeof CallForPapersRoute
+}
+
+declare module '@tanstack/react-router' {
+  interface FileRoutesByPath {
+    '/call-for-papers': {
+      id: '/call-for-papers'
+      path: '/call-for-papers'
+      fullPath: '/call-for-papers'
+      preLoaderRoute: typeof CallForPapersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/author': {
+      id: '/author'
+      path: '/author'
+      fullPath: '/author'
+      preLoaderRoute: typeof AuthorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth/register': {
+      id: '/auth/register'
+      path: '/register'
+      fullPath: '/auth/register'
+      preLoaderRoute: typeof AuthRegisterRouteImport
+      parentRoute: typeof AuthRoute
+    }
+    '/auth/login': {
+      id: '/auth/login'
+      path: '/login'
+      fullPath: '/auth/login'
+      preLoaderRoute: typeof AuthLoginRouteImport
+      parentRoute: typeof AuthRoute
+    }
+    '/auth/confirm-email-sent': {
+      id: '/auth/confirm-email-sent'
+      path: '/confirm-email-sent'
+      fullPath: '/auth/confirm-email-sent'
+      preLoaderRoute: typeof AuthConfirmEmailSentRouteImport
+      parentRoute: typeof AuthRoute
+    }
+    '/auth/confirm-email': {
+      id: '/auth/confirm-email'
+      path: '/confirm-email'
+      fullPath: '/auth/confirm-email'
+      preLoaderRoute: typeof AuthConfirmEmailRouteImport
+      parentRoute: typeof AuthRoute
+    }
+  }
+}
+
+interface AuthRouteChildren {
   AuthConfirmEmailRoute: typeof AuthConfirmEmailRoute
   AuthConfirmEmailSentRoute: typeof AuthConfirmEmailSentRoute
   AuthLoginRoute: typeof AuthLoginRoute
   AuthRegisterRoute: typeof AuthRegisterRoute
 }
 
-declare module '@tanstack/react-router' {
-  interface FileRoutesByPath {
-    '/auth/register': {
-      id: '/auth/register'
-      path: '/auth/register'
-      fullPath: '/auth/register'
-      preLoaderRoute: typeof AuthRegisterRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/auth/login': {
-      id: '/auth/login'
-      path: '/auth/login'
-      fullPath: '/auth/login'
-      preLoaderRoute: typeof AuthLoginRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/auth/confirm-email-sent': {
-      id: '/auth/confirm-email-sent'
-      path: '/auth/confirm-email-sent'
-      fullPath: '/auth/confirm-email-sent'
-      preLoaderRoute: typeof AuthConfirmEmailSentRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/auth/confirm-email': {
-      id: '/auth/confirm-email'
-      path: '/auth/confirm-email'
-      fullPath: '/auth/confirm-email'
-      preLoaderRoute: typeof AuthConfirmEmailRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-  }
-}
-
-const rootRouteChildren: RootRouteChildren = {
+const AuthRouteChildren: AuthRouteChildren = {
   AuthConfirmEmailRoute: AuthConfirmEmailRoute,
   AuthConfirmEmailSentRoute: AuthConfirmEmailSentRoute,
   AuthLoginRoute: AuthLoginRoute,
   AuthRegisterRoute: AuthRegisterRoute,
+}
+
+const AuthRouteWithChildren = AuthRoute._addFileChildren(AuthRouteChildren)
+
+const rootRouteChildren: RootRouteChildren = {
+  IndexRoute: IndexRoute,
+  AuthRoute: AuthRouteWithChildren,
+  AuthorRoute: AuthorRoute,
+  CallForPapersRoute: CallForPapersRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

@@ -1,33 +1,17 @@
-import { Link } from '@tanstack/react-router';
 import styles from './Header.module.css';
 import logo from '@assets/logo.png';
-import { isAuthenticated } from '@lib/auth';
-import { Route as loginRoute } from '@routes/auth/login';
-import AuthNav from '@components/navigation/AuthNav/AuthNav';
+import AuthNav from '@/components/navigation/Nav/AuthNav';
+import { UserNav } from '@/components/navigation/Nav/UserNav';
+import { useAuthStore } from '@/store/authStore';
 
 const Header = () => {
+  const isAuthenticated = useAuthStore(state => state.isAuthenticated());
+
   return (
     <header className={styles.header}>
       <div className={styles.headerContent}>
         <img src={logo} alt="Logo" className={styles.logo} />
-        {!isAuthenticated() ? (
-          <AuthNav />
-        ) : (
-          <nav className={styles.guestNav}>
-            <ul className={styles.navList}>
-              <li className={styles.navItem}>
-                <Link to={loginRoute.to} className={styles.navLink}>
-                  Author
-                </Link>
-              </li>
-              <li className={styles.navItem}>
-                <Link to={loginRoute.to} className={styles.navLink}>
-                  Conferences
-                </Link>
-              </li>
-            </ul>
-          </nav>
-        )}
+        {!isAuthenticated ? <AuthNav /> : <UserNav />}
       </div>
     </header>
   );

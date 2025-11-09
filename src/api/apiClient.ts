@@ -1,11 +1,7 @@
 import axios, { AxiosError, type InternalAxiosRequestConfig } from 'axios';
-import {
-  clearAccessToken,
-  getAccessToken,
-  setAccessToken,
-} from '@lib/auth';
 import { AUTH_ENDPOINTS } from './auth/endpoints';
 import { navigate } from '@utils/navigate';
+import { getAccessToken, useAuthStore } from '@/store/authStore';
 
 let isRefreshing = false;
 const failedQueue: ((token: string) => void)[] = [];
@@ -46,7 +42,7 @@ apiClient.interceptors.response.use(
       try {
         const response = await apiClient.get(AUTH_ENDPOINTS.REFRESH);
         const newToken = response.data.accessToken;
-        setAccessToken(newToken);
+        useAuthStore.getState().setAccessToken(newToken);
 
         failedQueue.forEach((resolve) => resolve(newToken));           // Разбираем очередь отклонённых запросов, подставляя новый токен
         failedQueue.length = 0;
@@ -54,7 +50,7 @@ apiClient.interceptors.response.use(
         originalRequest.headers.Authorization = `Bearer ${newToken}`;
         return apiClient(originalRequest);                             // Повторно отправляем наш начальный запрос, вызвавший смуту   
       } catch (refreshError) {
-        clearAccessToken();
+        useAuthStore.getState().clearAccessToken();
           navigate('/auth/login');                                   // При неудаче, отправляем на страницу авторизации.
         return Promise.reject(refreshError);
       } finally {
