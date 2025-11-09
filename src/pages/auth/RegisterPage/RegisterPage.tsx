@@ -1,8 +1,8 @@
+import { Link } from '@tanstack/react-router';
 import styles from './RegisterPage.module.css';
 import { AuthWindow } from '../AuthWindow/AuthWindow';
-import { RegisterForm } from '../../../features/auth/components/Forms/RegisterForm';
-import { Route as loginRoute } from '../../../routes/auth/login';
-import { Link } from '@tanstack/react-router';
+import { RegisterForm } from '@features/auth/components/Forms/RegisterForm';
+import { Route as loginRoute } from '@routes/auth/login';
 
 export const RegisterPage = () => {
   const additionalInfo = (

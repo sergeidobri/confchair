@@ -1,5 +1,5 @@
 import type { ButtonHTMLAttributes } from 'react';
-import cn from '../../../utils/classname-func';
+import cn from '@utils/classname-func';
 import styles from './Button.module.css';
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -19,6 +19,6 @@ export const Button = ({
       [styles['btn-disabled']]: isLoading || disabled,
     })}
   >
-    {isLoading ? "Loading..." : children}
+    {isLoading ? 'Loading...' : children}
   </button>
 );

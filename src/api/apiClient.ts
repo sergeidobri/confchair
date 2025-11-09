@@ -3,9 +3,9 @@ import {
   clearAccessToken,
   getAccessToken,
   setAccessToken,
-} from '../lib/auth';
+} from '@lib/auth';
 import { AUTH_ENDPOINTS } from './auth/endpoints';
-import { navigate } from '../utils/navigate';
+import { navigate } from '@utils/navigate';
 
 let isRefreshing = false;
 const failedQueue: ((token: string) => void)[] = [];

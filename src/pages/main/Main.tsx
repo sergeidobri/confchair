@@ -1,5 +1,5 @@
-import { usersApi } from '../../api/users/api';
-import { getAccessToken } from '../../lib/auth';
+import { usersApi } from '@api/users/api';
+import { getAccessToken } from '@lib/auth';
 
 const Main = () => {
   usersApi

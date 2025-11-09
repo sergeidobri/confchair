@@ -1,4 +1,4 @@
-import apiClient from '../apiClient';
+import apiClient from '@api/apiClient';
 import { AUTH_ENDPOINTS } from './endpoints';
 import {
   type ConfirmEmailRequest,

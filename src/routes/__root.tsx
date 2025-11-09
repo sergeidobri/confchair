@@ -1,11 +1,11 @@
 import { createRootRoute, Outlet, useNavigate } from '@tanstack/react-router';
 import { TanStackRouterDevtools } from '@tanstack/react-router-devtools';
-import Header from '../components/layout/Header/Header';
-import Footer from '../components/layout/Footer/Footer';
+import Header from '@components/layout/Header/Header';
+import Footer from '@components/layout/Footer/Footer';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useEffect } from 'react';
-import { setNavigate } from '../utils/navigate';
+import { setNavigate } from '@utils/navigate';
 
 const RootLayout = () => {
   const navigate = useNavigate();

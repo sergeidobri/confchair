@@ -1,9 +1,9 @@
-import styles from './Header.module.css';
-import logo from '../../../assets/logo.png';
-import AuthNav from '../../navigation/AuthNav/AuthNav';
-import { isAuthenticated } from '../../../lib/auth';
 import { Link } from '@tanstack/react-router';
-import { Route as loginRoute } from '../../../routes/auth/login';
+import styles from './Header.module.css';
+import logo from '@assets/logo.png';
+import { isAuthenticated } from '@lib/auth';
+import { Route as loginRoute } from '@routes/auth/login';
+import AuthNav from '@components/navigation/AuthNav/AuthNav';
 
 const Header = () => {
   return (

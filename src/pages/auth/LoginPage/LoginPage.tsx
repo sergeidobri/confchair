@@ -1,9 +1,9 @@
-import styles from './LoginPage.module.css';
-import { LoginForm } from '../../../features/auth/components/Forms/LoginForm';
-import { AuthWindow } from '../AuthWindow/AuthWindow';
-import { Route as loginRoute } from '../../../routes/auth/login';
-import { Route as registerRoute } from '../../../routes/auth/register';
 import { Link } from '@tanstack/react-router';
+import styles from './LoginPage.module.css';
+import { AuthWindow } from '../AuthWindow/AuthWindow';
+import { LoginForm } from '@features/auth/components/Forms/LoginForm';
+import { Route as loginRoute } from '@routes/auth/login';
+import { Route as registerRoute } from '@routes/auth/register';
 
 export const LoginPage = () => {
   const additionalInfo = (

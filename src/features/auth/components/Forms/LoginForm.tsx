@@ -1,8 +1,8 @@
-import styles from "./Form.module.css";
-import { Input } from "../../../../components/ui/Input/Input";
-import { Button } from "../../../../components/ui/Button/Button";
-import { useLoginForm } from "../../hooks/useLoginForm";
-import FormField from "../../../../components/ui/FormField/FormField";
+import styles from './Form.module.css';
+import { Input } from '@components/ui/Input/Input';
+import { Button } from '@components/ui/Button/Button';
+import { useLoginForm } from '@features/auth/hooks/useLoginForm';
+import FormField from '@components/ui/FormField/FormField';
 
 export const LoginForm = () => {
   const {
@@ -18,7 +18,7 @@ export const LoginForm = () => {
         <Input
           id="email"
           type="email"
-          {...register("email")}
+          {...register('email')}
           error={errors.email?.message}
           disabled={isSubmitting}
         />
@@ -28,15 +28,13 @@ export const LoginForm = () => {
         <Input
           id="password"
           type="password"
-          {...register("password")}
+          {...register('password')}
           error={errors.password?.message}
           disabled={isSubmitting}
         />
       </FormField>
 
-      {errors.root && (
-        <div className={styles.formError}>{errors.root.message}</div>
-      )}
+      {errors.root && <div className={styles.formError}>{errors.root.message}</div>}
 
       <Button type="submit" disabled={isSubmitting} isLoading={isSubmitting}>
         Sign In

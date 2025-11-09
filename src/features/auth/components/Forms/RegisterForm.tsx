@@ -1,8 +1,8 @@
-import styles from "./Form.module.css";
-import { Input } from "../../../../components/ui/Input/Input";
-import FormField from "../../../../components/ui/FormField/FormField";
-import { Button } from "../../../../components/ui/Button/Button";
-import { useRegisterForm } from "../../hooks/useRegisterForm";
+import styles from './Form.module.css';
+import { Input } from '@components/ui/Input/Input';
+import FormField from '@components/ui/FormField/FormField';
+import { Button } from '@components/ui/Button/Button';
+import { useRegisterForm } from '@features/auth/hooks/useRegisterForm';
 
 export const RegisterForm = () => {
   const {
@@ -18,7 +18,7 @@ export const RegisterForm = () => {
         <Input
           id="email"
           type="email"
-          {...register("email")}
+          {...register('email')}
           error={errors.email?.message}
           disabled={isSubmitting}
         />
@@ -27,7 +27,7 @@ export const RegisterForm = () => {
       <FormField label="First name" width="half" required>
         <Input
           id="firstName"
-          {...register("firstName")}
+          {...register('firstName')}
           error={errors.firstName?.message}
           disabled={isSubmitting}
         />
@@ -36,7 +36,7 @@ export const RegisterForm = () => {
       <FormField label="Last name" width="half" required>
         <Input
           id="lastName"
-          {...register("lastName")}
+          {...register('lastName')}
           error={errors.lastName?.message}
           disabled={isSubmitting}
         />
@@ -46,7 +46,7 @@ export const RegisterForm = () => {
         <Input
           id="password"
           type="password"
-          {...register("password")}
+          {...register('password')}
           error={errors.password?.message}
           disabled={isSubmitting}
         />
@@ -56,15 +56,13 @@ export const RegisterForm = () => {
         <Input
           id="confirmPassword"
           type="password"
-          {...register("confirmPassword")}
+          {...register('confirmPassword')}
           error={errors.confirmPassword?.message}
           disabled={isSubmitting}
         />
       </FormField>
 
-      {errors.root && (
-        <div className={styles.formError}>{errors.root.message}</div>
-      )}
+      {errors.root && <div className={styles.formError}>{errors.root.message}</div>}
 
       <Button type="submit" disabled={isSubmitting} isLoading={isSubmitting}>
         Sign up

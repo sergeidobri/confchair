@@ -1,5 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router';
-import ConfirmEmailPage from '../../pages/auth/ConfirmEmailPage/ConfirmEmailPage';
+import ConfirmEmailPage from '@pages/auth/ConfirmEmailPage/ConfirmEmailPage';
 import { z } from 'zod';
 
 const searchSchema = z.object({

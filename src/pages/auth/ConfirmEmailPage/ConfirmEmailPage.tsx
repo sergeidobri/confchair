@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
-import { toast } from 'react-toastify';
-import { authApi } from '../../../api/auth/api';
-import { navigate } from '../../../utils/navigate';
 import { useSearch } from '@tanstack/react-router';
+import { toast } from 'react-toastify';
+import { authApi } from '@api/auth/api';
+import { navigate } from '@utils/navigate';
 
 const ConfirmEmailPage = () => {
   const search = useSearch({ strict: false });

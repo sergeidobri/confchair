@@ -1,6 +1,6 @@
 import React, { type InputHTMLAttributes } from 'react';
 import styles from './Input.module.css';
-import cn from '../../../utils/classname-func';
+import cn from '@utils/classname-func';
 
 interface Props extends InputHTMLAttributes<HTMLInputElement> {
   error?: string;

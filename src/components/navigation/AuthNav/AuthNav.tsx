@@ -1,7 +1,7 @@
 import { Link } from '@tanstack/react-router';
 import styles from './AuthNav.module.css';
-import { Route as loginRoute } from '../../../routes/auth/login';
-import { Route as registerRoute } from '../../../routes/auth/register';
+import { Route as loginRoute } from '@routes/auth/login';
+import { Route as registerRoute } from '@routes/auth/register';
 
 const AuthNav = () => {
   return (

@@ -1,8 +1,8 @@
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { registerSchema, type RegisterFormData } from '../schemas/registerSchema';
-import { authApi } from '../../../api/auth/api';
-import { navigate } from '../../../utils/navigate';
+import { registerSchema, type RegisterFormData } from '@features/auth/schemas/registerSchema';
+import { authApi } from '@api/auth/api';
+import { navigate } from '@utils/navigate';
 
 export const useRegisterForm = () => {
   const form = useForm<RegisterFormData>({

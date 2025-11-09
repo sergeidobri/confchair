@@ -1,4 +1,4 @@
-import apiClient from '../apiClient';
+import apiClient from '@api/apiClient';
 import { USERS_ENDPOINTS } from './endpoints';
 
 export const usersApi = {

@@ -1,6 +1,6 @@
 import { AuthWindow } from '../AuthWindow/AuthWindow';
-import { Button } from '../../../components/ui/Button/Button';
-import { navigate } from './../../../utils/navigate';
+import { Button } from '@components/ui/Button/Button';
+import { navigate } from '@utils/navigate';
 
 const ConfirmEmailSentPage = () => {
   return (

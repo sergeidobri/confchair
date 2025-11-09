@@ -1,9 +1,9 @@
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { loginSchema, type LoginFormData } from '../schemas/loginSchema';
-import { authApi } from '../../../api/auth/api';
-import { setAccessToken } from '../../../lib/auth';
-import { navigate } from '../../../utils/navigate';
+import { loginSchema, type LoginFormData } from '@features/auth/schemas/loginSchema';
+import { authApi } from '@api/auth/api';
+import { setAccessToken } from '@lib/auth';
+import { navigate } from '@utils/navigate';
 
 export const useLoginForm = () => {
   const form = useForm<LoginFormData>({
