@@ -1,11 +1,16 @@
-nav {
+.navContainer {
   width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .container {
   display: flex;
   justify-content: flex-end;
   gap: 1rem;
+  padding: 16px 0;
 }
 
 .alignLeft {
@@ -16,24 +21,43 @@ nav {
   justify-content: flex-end;
 }
 
-.link {
+.link a {
   padding: 16px 0;
   color: rgb(1, 114, 173);
   text-decoration: none;
 }
 
-.leftAlignLink {
-  align-self: flex-start;
-}
-
-.link:hover {
+.link a:hover {
   color: rgb(2, 101, 154);
   text-decoration: underline;
 }
 
+.hasMeta {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.hasMeta a {
+  padding: 0;
+}
+
+.navItemMeta {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 10px;
+}
+
 @media (max-width: 639px) {
   .container {
-    width: 100%;
     justify-content: space-between;
+  }
+
+  .navItemMeta {
+    display: none;
   }
 }

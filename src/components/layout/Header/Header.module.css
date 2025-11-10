@@ -8,7 +8,7 @@
     rgba(129, 145, 181, 0.043) 4.17px 8.34px 50.04px 0px,
     rgba(129, 145, 181, 0.06) 10px 20px 120px 0px,
     rgba(129, 145, 181, 0.015) 0px 0px 0px 1.25px;
-  height: 70px;
+  min-height: 70px;
   display: flex;
   justify-content: center;
   align-items: center;

@@ -50,8 +50,8 @@ apiClient.interceptors.response.use(
         originalRequest.headers.Authorization = `Bearer ${newToken}`;
         return apiClient(originalRequest);                             // Повторно отправляем наш начальный запрос, вызвавший смуту   
       } catch (refreshError) {
-        useAuthStore.getState().clearAccessToken();
-          navigate('/auth/login');                                   // При неудаче, отправляем на страницу авторизации.
+        useAuthStore.getState().clearAuth();
+        navigate('/auth/login');                                   // При неудаче, отправляем на страницу авторизации.
         return Promise.reject(refreshError);
       } finally {
         isRefreshing = false;

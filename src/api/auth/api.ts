@@ -18,5 +18,9 @@ export const authApi = {
     apiClient.get<TokenResponse>(AUTH_ENDPOINTS.REFRESH),
 
   confirmEmail: (data: ConfirmEmailRequest) =>
-    apiClient.post(AUTH_ENDPOINTS.CONFIRM_EMAIL, data)
-};
+    apiClient.post(AUTH_ENDPOINTS.CONFIRM_EMAIL, data),
+  
+  logout: () => {
+    apiClient.get(AUTH_ENDPOINTS.LOGOUT)
+  }
+}; 

@@ -14,6 +14,7 @@ import { Route as AuthorRouteImport } from './routes/author'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthRegisterRouteImport } from './routes/auth/register'
+import { Route as AuthLogoutRouteImport } from './routes/auth/logout'
 import { Route as AuthLoginRouteImport } from './routes/auth/login'
 import { Route as AuthConfirmEmailSentRouteImport } from './routes/auth/confirm-email-sent'
 import { Route as AuthConfirmEmailRouteImport } from './routes/auth/confirm-email'
@@ -43,6 +44,11 @@ const AuthRegisterRoute = AuthRegisterRouteImport.update({
   path: '/register',
   getParentRoute: () => AuthRoute,
 } as any)
+const AuthLogoutRoute = AuthLogoutRouteImport.update({
+  id: '/logout',
+  path: '/logout',
+  getParentRoute: () => AuthRoute,
+} as any)
 const AuthLoginRoute = AuthLoginRouteImport.update({
   id: '/login',
   path: '/login',
@@ -67,6 +73,7 @@ export interface FileRoutesByFullPath {
   '/auth/confirm-email': typeof AuthConfirmEmailRoute
   '/auth/confirm-email-sent': typeof AuthConfirmEmailSentRoute
   '/auth/login': typeof AuthLoginRoute
+  '/auth/logout': typeof AuthLogoutRoute
   '/auth/register': typeof AuthRegisterRoute
 }
 export interface FileRoutesByTo {
@@ -77,6 +84,7 @@ export interface FileRoutesByTo {
   '/auth/confirm-email': typeof AuthConfirmEmailRoute
   '/auth/confirm-email-sent': typeof AuthConfirmEmailSentRoute
   '/auth/login': typeof AuthLoginRoute
+  '/auth/logout': typeof AuthLogoutRoute
   '/auth/register': typeof AuthRegisterRoute
 }
 export interface FileRoutesById {
@@ -88,6 +96,7 @@ export interface FileRoutesById {
   '/auth/confirm-email': typeof AuthConfirmEmailRoute
   '/auth/confirm-email-sent': typeof AuthConfirmEmailSentRoute
   '/auth/login': typeof AuthLoginRoute
+  '/auth/logout': typeof AuthLogoutRoute
   '/auth/register': typeof AuthRegisterRoute
 }
 export interface FileRouteTypes {
@@ -100,6 +109,7 @@ export interface FileRouteTypes {
     | '/auth/confirm-email'
     | '/auth/confirm-email-sent'
     | '/auth/login'
+    | '/auth/logout'
     | '/auth/register'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -110,6 +120,7 @@ export interface FileRouteTypes {
     | '/auth/confirm-email'
     | '/auth/confirm-email-sent'
     | '/auth/login'
+    | '/auth/logout'
     | '/auth/register'
   id:
     | '__root__'
@@ -120,6 +131,7 @@ export interface FileRouteTypes {
     | '/auth/confirm-email'
     | '/auth/confirm-email-sent'
     | '/auth/login'
+    | '/auth/logout'
     | '/auth/register'
   fileRoutesById: FileRoutesById
 }
@@ -167,6 +179,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthRegisterRouteImport
       parentRoute: typeof AuthRoute
     }
+    '/auth/logout': {
+      id: '/auth/logout'
+      path: '/logout'
+      fullPath: '/auth/logout'
+      preLoaderRoute: typeof AuthLogoutRouteImport
+      parentRoute: typeof AuthRoute
+    }
     '/auth/login': {
       id: '/auth/login'
       path: '/login'
@@ -195,6 +214,7 @@ interface AuthRouteChildren {
   AuthConfirmEmailRoute: typeof AuthConfirmEmailRoute
   AuthConfirmEmailSentRoute: typeof AuthConfirmEmailSentRoute
   AuthLoginRoute: typeof AuthLoginRoute
+  AuthLogoutRoute: typeof AuthLogoutRoute
   AuthRegisterRoute: typeof AuthRegisterRoute
 }
 
@@ -202,6 +222,7 @@ const AuthRouteChildren: AuthRouteChildren = {
   AuthConfirmEmailRoute: AuthConfirmEmailRoute,
   AuthConfirmEmailSentRoute: AuthConfirmEmailSentRoute,
   AuthLoginRoute: AuthLoginRoute,
+  AuthLogoutRoute: AuthLogoutRoute,
   AuthRegisterRoute: AuthRegisterRoute,
 }
 

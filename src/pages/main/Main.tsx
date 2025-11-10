@@ -1,5 +1,5 @@
+import { getAccessToken } from '@/store/authStore';
 import { usersApi } from '@api/users/api';
-import { getAccessToken } from '@lib/auth';
 
 const Main = () => {
   usersApi
