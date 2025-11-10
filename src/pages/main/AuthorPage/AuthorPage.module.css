@@ -1,0 +1,20 @@
+.authorHeader {
+  display: flex;
+  gap: 10px;
+  align-items: baseline;
+  margin-bottom: 15px;
+}
+
+.heading {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.editLink {
+  color: rgb(1, 114, 173);
+}
+
+.editLink:hover {
+  text-decoration: underline;
+  color: rgb(1, 88, 135);
+}

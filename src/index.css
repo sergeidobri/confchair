@@ -7,12 +7,19 @@
   --text-title-color: #424751;
   --text-color: #373c44;
   --font-size: calc(0.36vw + 14.4px);
+  --table-border-color: rgb(231, 234, 240);
+  font-size: var(--font-size);
 }
 
 body {
   font-family: var(--font);
   font-size: var(--font-size);
   color: var(--text-color);
+}
+
+header,
+footer {
+  flex-shrink: 0;
 }
 
 #root {
@@ -24,8 +31,16 @@ body {
 }
 
 main {
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
   display: flex;
+  flex-direction: column;
+  flex: 1;
+  height: 100%;
+  padding: 0 10%;
+  box-sizing: border-box;
+}
+
+@media (max-width: 639px) {
+  main {
+    padding: 0 5%;
+  }
 }
