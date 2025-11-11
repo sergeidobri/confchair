@@ -6,6 +6,12 @@ import { getAccessToken, useAuthStore } from '@/store/authStore';
 let isRefreshing = false;
 const failedQueue: ((token: string) => void)[] = [];
 
+const refreshApiClient = axios.create({
+  baseURL: import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000',
+  withCredentials: true,
+  timeout: 10_000,
+});
+
 const apiClient = axios.create({
   baseURL: import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000',
   withCredentials: true,
@@ -25,8 +31,9 @@ apiClient.interceptors.response.use(
   (response) => response,          // при успешном запросе(2xx) -> ничего не делаем
   async (error: AxiosError) => {   // обрабатываем ошибки сервера
     const originalRequest = error.config as InternalAxiosRequestConfig & { _retry?: boolean };  // сохраняем изначальный запрос(упавший с ошибкой)
+    const isRefreshRequest = error.config?.url?.includes('/auth/refresh');
 
-    if (error.response?.status === 401 && !originalRequest._retry) {   // если статус 401(Ошибка авторизации) и запрос ещё не поступал(!_retry)
+    if (error.response?.status === 401 && !originalRequest._retry && !isRefreshRequest) {   // если статус 401(Ошибка авторизации) и запрос ещё не поступал(!_retry)
       if (isRefreshing) {                                              // Если уже знаем об ошибке авторизации (отправили запрос на обновление токена(isRefreshing)), то просто добавляем запрос в очередь
         return new Promise((resolve) => {
           failedQueue.push((token) => {
@@ -40,7 +47,7 @@ apiClient.interceptors.response.use(
       isRefreshing = true;                                             // Помечаем, что сейчас будет запущен процесс обновления
 
       try {
-        const response = await apiClient.get(AUTH_ENDPOINTS.REFRESH);
+        const response = await refreshApiClient.get(AUTH_ENDPOINTS.REFRESH);
         const newToken = response.data.accessToken;
         useAuthStore.getState().setAccessToken(newToken);
 

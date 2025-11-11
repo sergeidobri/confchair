@@ -5,8 +5,14 @@ import { Route as logoutRoute } from '@routes/auth/logout';
 import { Nav } from './Nav';
 import { useLoadUser } from '@/hooks/useLoadUser';
 import { useAuthStore } from '@/store/authStore';
+import { useLocation } from '@tanstack/react-router';
 
 export function UserNav() {
+  // usernav рендерится до beforeload в роуте logout, уходит запрос с токенами до их удаления = баг
+  // избавляемся от этого компонента при выполнении логики логаута
+  const location = useLocation();
+  if (location.pathname == '/auth/logout') return;
+
   useLoadUser();
 
   const user = useAuthStore(state => state.user);

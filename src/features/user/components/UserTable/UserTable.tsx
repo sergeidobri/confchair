@@ -21,8 +21,8 @@ const UserTable = ({ user }: { user: User }) => {
   return (
     <table className={styles.table}>
       <tbody>
-        {infoToDisplay.map(item => (
-          <tr>
+        {infoToDisplay.map((item, i) => (
+          <tr key={i}>
             <th>{item.label}</th>
             <td>{item.value || ' '}</td>
           </tr>
