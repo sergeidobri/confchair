@@ -8,6 +8,7 @@
   --text-color: #373c44;
   --font-size: calc(0.36vw + 14.4px);
   --table-border-color: rgb(231, 234, 240);
+  --color-required-star: rgb(239, 68, 68);
   font-size: var(--font-size);
 }
 

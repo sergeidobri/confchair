@@ -15,6 +15,6 @@
 }
 
 .requiredStar {
-  color: rgb(217, 53, 38);
+  color: var(--color-required-star);
 }
 

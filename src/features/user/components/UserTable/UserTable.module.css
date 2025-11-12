@@ -1,3 +1,22 @@
+.editButtons {
+  display: flex;
+  justify-content: flex-start;
+  gap: 10px;
+  align-items: center;
+  width: auto;
+  max-width: 600px;
+}
+
+.btnCancel {
+  color: rgb(217, 53, 38);
+  border-color: rgb(217, 53, 38);
+}
+
+.btnCancel:hover {
+  background-color: rgb(154, 37, 26);
+  color: #fff;
+}
+
 .table {
   max-width: 600px;
   width: auto;
@@ -6,15 +25,30 @@
   border-collapse: collapse;
 }
 
-.table th,
-td {
+.table th {
   text-align: start;
   font-weight: 400;
   padding: 0.5rem 1rem;
 }
 
+.table td {
+  position: relative;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+  text-align: start;
+  font-weight: 400;
+  width: 70%;
+  padding: 0.5rem 1rem;
+  max-width: 0;
+}
+
 .table tr {
   border-bottom: 0.0625rem solid var(--table-border-color);
+}
+
+.requiredStar {
+  color: var(--color-required-star);
 }
 
 @media (max-width: 639px) {

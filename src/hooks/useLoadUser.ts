@@ -1,49 +1,26 @@
-import { usersApi } from "@api/users/api";
-import { useAuthStore } from "@/store/authStore";
-import { useEffect } from "react";
-
-// export const useLoadUser = () => {
-//   const token = useAuthStore((state) => state.accessToken);
-//   const user = useAuthStore((state) => state.user);
-
-//   const setUser = useAuthStore((state) => state.setUser);
-
-//   useEffect(() => {
-//     if (!user && token) {
-//       usersApi
-//         .getUser()
-//         .then((userData) => {
-//           setUser(userData);
-//         })
-//         .catch((err) => {
-//           console.error('Failed to load user', err);
-//         });
-//     }
-//   }, [user, setUser]);
-// };
+import { usersApi } from '@api/users/api';
+import { useAuthStore } from '@/store/authStore';
+import { useEffect } from 'react';
+import { useLocation } from '@tanstack/react-router';
 
 let isFetchingUser = false;
 
 export const useLoadUser = () => {
-  // const token = useAuthStore((state) => state.accessToken); 
-  const user = useAuthStore((state) => state.user);
-  const setUser = useAuthStore((state) => state.setUser);
+  const location = useLocation();
+  const user = useAuthStore(state => state.user);
+  const setUser = useAuthStore(state => state.setUser);
 
   useEffect(() => {
-    if (user) return;
-
-    if (isFetchingUser) {
-      return;
-    }
+    if (location.pathname == '/auth/logout' || user || isFetchingUser) return;
 
     isFetchingUser = true;
 
     usersApi
       .getUser()
-      .then((userData) => {
+      .then(userData => {
         setUser(userData);
       })
-      .catch((err) => {
+      .catch(err => {
         console.error('Failed to load user', err);
       })
       .finally(() => {

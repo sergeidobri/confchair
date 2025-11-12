@@ -12,6 +12,7 @@
 
 .editLink {
   color: rgb(1, 114, 173);
+  cursor: pointer;
 }
 
 .editLink:hover {
