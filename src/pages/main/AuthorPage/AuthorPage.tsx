@@ -1,13 +1,12 @@
 import styles from './AuthorPage.module.css';
 import { useState } from 'react';
-import { useLoadUser } from '@/hooks/useLoadUser';
-import { useAuthStore } from '@/store/authStore';
 import UserTable from '@features/user/components/UserTable/UserTable';
+import { useQuery } from '@tanstack/react-query';
+import { usersApi } from '@/api/users/api';
 
 const AuthorPage = () => {
-  useLoadUser();
+  const { data: user } = useQuery({ queryKey: ['getUser'], queryFn: usersApi.getUser });
 
-  const user = useAuthStore.getState().user;
   const [isEditing, setIsEditing] = useState(false);
 
   const handleEditClick = () => {

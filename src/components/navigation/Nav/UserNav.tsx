@@ -3,16 +3,11 @@ import { Route as authorRoute } from '@routes/author';
 import { Route as callForPapersRoute } from '@routes/call-for-papers';
 import { Route as logoutRoute } from '@routes/auth/logout';
 import { Nav } from './Nav';
-import { useLoadUser } from '@/hooks/useLoadUser';
-import { useAuthStore } from '@/store/authStore';
+import { useQuery } from '@tanstack/react-query';
+import { usersApi } from '@/api/users/api';
 
 export function UserNav() {
-  // usernav рендерится до beforeload в роуте logout, уходит запрос с токенами до их удаления = баг
-  // избавляемся от этого компонента при выполнении логики логаута.
-
-  useLoadUser();
-
-  const user = useAuthStore(state => state.user);
+  const { data: user } = useQuery({ queryKey: ['getUser'], queryFn: usersApi.getUser });
 
   const leftItems = [
     { to: authorRoute.to, label: 'Author' },

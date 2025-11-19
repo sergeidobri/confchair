@@ -6,6 +6,9 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useEffect } from 'react';
 import { setNavigate } from '@utils/navigate';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+
+export const queryClient = new QueryClient();
 
 export const App = () => {
   const navigate = useNavigate();
@@ -13,7 +16,7 @@ export const App = () => {
     setNavigate((path: string) => navigate({ to: path }));
   }, [navigate]);
   return (
-    <>
+    <QueryClientProvider client={queryClient}>
       <Header />
       <main>
         <ToastContainer
@@ -31,6 +34,6 @@ export const App = () => {
         <TanStackRouterDevtools />
       </main>
       <Footer />
-    </>
+    </QueryClientProvider>
   );
 };
