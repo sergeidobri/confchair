@@ -1,6 +1,6 @@
 import { Button } from '@components/ui/Button/Button';
 import styles from './UserTable.module.css';
-import type { User, UserFormData } from '@features/user/schemas/user';
+import type { User } from '@features/user/schemas/user';
 import { useUserForm } from '@features/user/hooks/useUserForm';
 import { Input } from '@components/ui/Input/Input';
 import { Select } from '@components/ui/Select/Select';
@@ -12,11 +12,14 @@ type Props = {
   isEditable: boolean;
   onCancel: () => void;
   onSave: () => void;
-  onSubmit: (data: UserFormData) => void;
 };
 
-const UserTable = ({ user, onSubmit, onSave, onCancel, isEditable = false }: Props) => {
-  const { form, handleSubmit } = useUserForm({ user, onSubmit: onSubmit });
+const UserTable = ({ user, onSave, onCancel, isEditable = false }: Props) => {
+  const { form, handleSubmit, handleCancel } = useUserForm({
+    user,
+    onSubmit: onSave,
+    onCancel: onCancel,
+  });
 
   const {
     register,
@@ -44,7 +47,7 @@ const UserTable = ({ user, onSubmit, onSave, onCancel, isEditable = false }: Pro
           {...register('title')}
         />
       ),
-      view: user.title || ' ',
+      view: user.title || '-',
     },
     {
       label: 'First Name',
@@ -61,7 +64,7 @@ const UserTable = ({ user, onSubmit, onSave, onCancel, isEditable = false }: Pro
     {
       label: 'Affiliation',
       editable: () => <Input error={errors.affiliation?.message} {...register('affiliation')} />,
-      view: user.affiliation || ' ',
+      view: user.affiliation || '-',
       isRequired: true,
     },
     {
@@ -72,20 +75,21 @@ const UserTable = ({ user, onSubmit, onSave, onCancel, isEditable = false }: Pro
           {...register('country')}
         />
       ),
-      view: user.country || ' ',
+      view: user.country || '-',
       isRequired: true,
     },
     {
       label: 'ORCID',
       editable: () => <Input error={errors.orcid?.message} {...register('orcid')} />,
-      view: null,
+      view: user.orcid ? user.orcid : null,
     },
     {
       label: 'Web Page',
       editable: () => <Input error={errors.webPage?.message} {...register('webPage')} />,
-      view: null,
+      view: user.webPage ? user.webPage : null,
     },
   ];
+
   return (
     <>
       <table className={styles.table}>
@@ -107,19 +111,16 @@ const UserTable = ({ user, onSubmit, onSave, onCancel, isEditable = false }: Pro
           ))}
         </tbody>
       </table>
+
+      {errors.root && isEditable && <div className={styles.formError}>{errors.root.message}</div>}
+
       {isEditable && (
         <div className={styles.editButtons}>
-          <Button
-            type="button"
-            onClick={() => {
-              onSave();
-              handleSubmit();
-            }}
-          >
-            Save
-          </Button>
-          <Button type="button" onClick={onCancel} btnClass={styles.btnCancel}>
+          <Button type="button" onClick={handleCancel} btnClass={styles.btnCancel}>
             Cancel
+          </Button>
+          <Button type="button" onClick={handleSubmit}>
+            Save
           </Button>
         </div>
       )}

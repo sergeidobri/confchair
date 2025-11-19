@@ -8,8 +8,7 @@ export const usersApi = {
     return await response.data;
   },
   updateUser: async (data: UserUpdateRequest) => {
-    console.log(data);
-    // const response = await apiClient.patch(USERS_ENDPOINTS.UPDATE_USER);
-    // return await response.data;
+    const response = await apiClient.patch(USERS_ENDPOINTS.UPDATE_USER, data);
+    return await response.data;
   },
 };

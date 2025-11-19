@@ -6,17 +6,25 @@ export type User = {
   firstName: string;
   lastName: string;
   affiliation?: string | null;
-  country?: string | null; // в будущем - что-то одно из выпадающего списка стран
+  country?: string | null;
   orcid?: string | null;
   webPage?: string | null;
 };
 
 export const userSchema = z.object({
-  title: z.enum(['Mr.', 'Mrs.', 'Ms.', 'Dr.', 'Prof.']).nullable().optional(),
-  firstName: z.string().min(1, 'First name is required'),
-  lastName: z.string().min(1, 'Last name is required'),
-  affiliation: z.string(),
-  country: z.string(),
+  title: z.enum(['', 'Mr.', 'Mrs.', 'Ms.', 'Dr.', 'Prof.']).nullable().optional(),
+  firstName: z
+    .string()
+    .min(1, 'First name is required')
+    .trim()
+    .regex(/^[a-zA-Z ]*$/, { error: 'No special symbols allowed' }),
+  lastName: z
+    .string()
+    .min(1, 'Last name is required')
+    .trim()
+    .regex(/^[a-zA-Z ]*$/, { error: 'No special symbols allowed' }),
+  affiliation: z.string().min(1, 'Affiliation is required').nullable(),
+  country: z.string().min(1, 'Country is required'),
   orcid: z.string().optional().nullable(),
   webPage: z.string().optional().nullable(),
 });
