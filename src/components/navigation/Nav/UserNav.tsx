@@ -1,6 +1,6 @@
 import styles from './Nav.module.css';
 import { Route as authorRoute } from '@routes/author';
-import { Route as callForPapersRoute } from '@routes/call-for-papers';
+import { Route as callForPapersRoute } from '@/routes/call-for-papers.index';
 import { Route as logoutRoute } from '@routes/auth/logout';
 import { Nav } from './Nav';
 import { useQuery } from '@tanstack/react-query';

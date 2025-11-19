@@ -1,16 +1,5 @@
 import { z } from 'zod';
 
-export type User = {
-  email: string;
-  title?: 'Mr.' | 'Mrs.' | 'Ms.' | 'Dr.' | 'Prof.' | null;
-  firstName: string;
-  lastName: string;
-  affiliation?: string | null;
-  country?: string | null;
-  orcid?: string | null;
-  webPage?: string | null;
-};
-
 export const userSchema = z.object({
   title: z.enum(['', 'Mr.', 'Mrs.', 'Ms.', 'Dr.', 'Prof.']).nullable().optional(),
   firstName: z

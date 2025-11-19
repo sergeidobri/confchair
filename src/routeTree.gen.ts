@@ -9,21 +9,17 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as CallForPapersRouteImport } from './routes/call-for-papers'
 import { Route as AuthorRouteImport } from './routes/author'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as CallForPapersIndexRouteImport } from './routes/call-for-papers.index'
+import { Route as CallForPapersAcronymRouteImport } from './routes/call-for-papers.$acronym'
 import { Route as AuthRegisterRouteImport } from './routes/auth/register'
 import { Route as AuthLogoutRouteImport } from './routes/auth/logout'
 import { Route as AuthLoginRouteImport } from './routes/auth/login'
 import { Route as AuthConfirmEmailSentRouteImport } from './routes/auth/confirm-email-sent'
 import { Route as AuthConfirmEmailRouteImport } from './routes/auth/confirm-email'
 
-const CallForPapersRoute = CallForPapersRouteImport.update({
-  id: '/call-for-papers',
-  path: '/call-for-papers',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const AuthorRoute = AuthorRouteImport.update({
   id: '/author',
   path: '/author',
@@ -37,6 +33,16 @@ const AuthRoute = AuthRouteImport.update({
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CallForPapersIndexRoute = CallForPapersIndexRouteImport.update({
+  id: '/call-for-papers/',
+  path: '/call-for-papers/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CallForPapersAcronymRoute = CallForPapersAcronymRouteImport.update({
+  id: '/call-for-papers/$acronym',
+  path: '/call-for-papers/$acronym',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AuthRegisterRoute = AuthRegisterRouteImport.update({
@@ -69,35 +75,38 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/auth': typeof AuthRouteWithChildren
   '/author': typeof AuthorRoute
-  '/call-for-papers': typeof CallForPapersRoute
   '/auth/confirm-email': typeof AuthConfirmEmailRoute
   '/auth/confirm-email-sent': typeof AuthConfirmEmailSentRoute
   '/auth/login': typeof AuthLoginRoute
   '/auth/logout': typeof AuthLogoutRoute
   '/auth/register': typeof AuthRegisterRoute
+  '/call-for-papers/$acronym': typeof CallForPapersAcronymRoute
+  '/call-for-papers': typeof CallForPapersIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/auth': typeof AuthRouteWithChildren
   '/author': typeof AuthorRoute
-  '/call-for-papers': typeof CallForPapersRoute
   '/auth/confirm-email': typeof AuthConfirmEmailRoute
   '/auth/confirm-email-sent': typeof AuthConfirmEmailSentRoute
   '/auth/login': typeof AuthLoginRoute
   '/auth/logout': typeof AuthLogoutRoute
   '/auth/register': typeof AuthRegisterRoute
+  '/call-for-papers/$acronym': typeof CallForPapersAcronymRoute
+  '/call-for-papers': typeof CallForPapersIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/auth': typeof AuthRouteWithChildren
   '/author': typeof AuthorRoute
-  '/call-for-papers': typeof CallForPapersRoute
   '/auth/confirm-email': typeof AuthConfirmEmailRoute
   '/auth/confirm-email-sent': typeof AuthConfirmEmailSentRoute
   '/auth/login': typeof AuthLoginRoute
   '/auth/logout': typeof AuthLogoutRoute
   '/auth/register': typeof AuthRegisterRoute
+  '/call-for-papers/$acronym': typeof CallForPapersAcronymRoute
+  '/call-for-papers/': typeof CallForPapersIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -105,52 +114,49 @@ export interface FileRouteTypes {
     | '/'
     | '/auth'
     | '/author'
-    | '/call-for-papers'
     | '/auth/confirm-email'
     | '/auth/confirm-email-sent'
     | '/auth/login'
     | '/auth/logout'
     | '/auth/register'
+    | '/call-for-papers/$acronym'
+    | '/call-for-papers'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/auth'
     | '/author'
-    | '/call-for-papers'
     | '/auth/confirm-email'
     | '/auth/confirm-email-sent'
     | '/auth/login'
     | '/auth/logout'
     | '/auth/register'
+    | '/call-for-papers/$acronym'
+    | '/call-for-papers'
   id:
     | '__root__'
     | '/'
     | '/auth'
     | '/author'
-    | '/call-for-papers'
     | '/auth/confirm-email'
     | '/auth/confirm-email-sent'
     | '/auth/login'
     | '/auth/logout'
     | '/auth/register'
+    | '/call-for-papers/$acronym'
+    | '/call-for-papers/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AuthRoute: typeof AuthRouteWithChildren
   AuthorRoute: typeof AuthorRoute
-  CallForPapersRoute: typeof CallForPapersRoute
+  CallForPapersAcronymRoute: typeof CallForPapersAcronymRoute
+  CallForPapersIndexRoute: typeof CallForPapersIndexRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/call-for-papers': {
-      id: '/call-for-papers'
-      path: '/call-for-papers'
-      fullPath: '/call-for-papers'
-      preLoaderRoute: typeof CallForPapersRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/author': {
       id: '/author'
       path: '/author'
@@ -170,6 +176,20 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/call-for-papers/': {
+      id: '/call-for-papers/'
+      path: '/call-for-papers'
+      fullPath: '/call-for-papers'
+      preLoaderRoute: typeof CallForPapersIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/call-for-papers/$acronym': {
+      id: '/call-for-papers/$acronym'
+      path: '/call-for-papers/$acronym'
+      fullPath: '/call-for-papers/$acronym'
+      preLoaderRoute: typeof CallForPapersAcronymRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/auth/register': {
@@ -232,7 +252,8 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuthRoute: AuthRouteWithChildren,
   AuthorRoute: AuthorRoute,
-  CallForPapersRoute: CallForPapersRoute,
+  CallForPapersAcronymRoute: CallForPapersAcronymRoute,
+  CallForPapersIndexRoute: CallForPapersIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

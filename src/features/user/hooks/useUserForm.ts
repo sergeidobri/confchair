@@ -1,9 +1,10 @@
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { userSchema, type User, type UserFormData } from '@features/user/schemas/user';
+import { userSchema, type UserFormData } from '@features/user/schemas/user';
 import { usersApi } from '@api/users/api';
 // import { useAuthStore } from '@/store/authStore';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import type { User } from '@/types/user';
 
 type RemoveNullable<T> = {
   [K in keyof T as T[K] extends null | undefined ? never : K]: T[K];

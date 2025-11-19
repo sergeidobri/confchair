@@ -1,11 +1,11 @@
 import { Button } from '@components/ui/Button/Button';
 import styles from './UserTable.module.css';
-import type { User } from '@features/user/schemas/user';
 import { useUserForm } from '@features/user/hooks/useUserForm';
 import { Input } from '@components/ui/Input/Input';
 import { Select } from '@components/ui/Select/Select';
 import { countryOptions } from '@/lib/cities';
 import React from 'react';
+import type { User } from '@/types/user';
 
 type Props = {
   user: User;
