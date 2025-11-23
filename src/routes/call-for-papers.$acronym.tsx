@@ -1,12 +1,12 @@
-import CallForPapersPage from '@pages/main/CallForPapersPage/CallForPapersPage';
+import { callForPapersApi } from '@/api/callForPapers/api';
+import CallForPapersDetailPage from '@/pages/main/CallForPapersDetailPage/CallForPapersDetailPage';
 import { createFileRoute } from '@tanstack/react-router';
 
 export const Route = createFileRoute('/call-for-papers/$acronym')({
-  component: CallForPapersPage,
+  component: CallForPapersDetailPage,
   loader: async ({ params }: { params: { acronym: string } }) => {
     const { acronym } = params;
-    // const conference = await callForPapersApi.getConferenceByAcronym(acronym);
-    const conference = { acronym: acronym, name: acronym };
+    const conference = await callForPapersApi.getCallForPapersByAcronym({ acronym });
     return { conference };
   },
 });
