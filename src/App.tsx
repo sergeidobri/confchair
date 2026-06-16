@@ -1,4 +1,4 @@
-import { Outlet, useNavigate } from '@tanstack/react-router';
+import { HeadContent, Outlet, useNavigate } from '@tanstack/react-router';
 import { TanStackRouterDevtools } from '@tanstack/react-router-devtools';
 import Header from '@components/layout/Header/Header';
 import Footer from '@components/layout/Footer/Footer';
@@ -17,6 +17,7 @@ export const App = () => {
   }, [navigate]);
   return (
     <QueryClientProvider client={queryClient}>
+      <HeadContent />
       <Header />
       <main>
         <ToastContainer

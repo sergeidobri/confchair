@@ -1,15 +1,14 @@
-import { Link } from '@tanstack/react-router';
-import styles from './RegisterPage.module.css';
-import { AuthWindow } from '../AuthWindow/AuthWindow';
+import { AuthWindow } from '@pages/auth/AuthWindow/AuthWindow';
 import { RegisterForm } from '@features/auth/components/Forms/RegisterForm';
 import { Route as loginRoute } from '@routes/auth/login';
+import Link from '@/components/ui/Link/Link';
 
 export const RegisterPage = () => {
   const additionalInfo = (
     <>
       <p>
         Already have an account?{' '}
-        <Link to={loginRoute.to} className={styles.link}>
+        <Link to={loginRoute.to} underline>
           Sign in now
         </Link>
         .

@@ -12,13 +12,14 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as AuthorRouteImport } from './routes/author'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as CallForPapersIndexRouteImport } from './routes/call-for-papers.index'
-import { Route as CallForPapersAcronymRouteImport } from './routes/call-for-papers.$acronym'
+import { Route as CallForPapersIndexRouteImport } from './routes/call-for-papers/index'
 import { Route as AuthRegisterRouteImport } from './routes/auth/register'
 import { Route as AuthLogoutRouteImport } from './routes/auth/logout'
 import { Route as AuthLoginRouteImport } from './routes/auth/login'
 import { Route as AuthConfirmEmailSentRouteImport } from './routes/auth/confirm-email-sent'
 import { Route as AuthConfirmEmailRouteImport } from './routes/auth/confirm-email'
+import { Route as CallForPapersAcronymIndexRouteImport } from './routes/call-for-papers/$acronym/index'
+import { Route as CallForPapersAcronymSubmissionNumberRouteImport } from './routes/call-for-papers/$acronym/submission/$number'
 
 const AuthorRoute = AuthorRouteImport.update({
   id: '/author',
@@ -38,11 +39,6 @@ const IndexRoute = IndexRouteImport.update({
 const CallForPapersIndexRoute = CallForPapersIndexRouteImport.update({
   id: '/call-for-papers/',
   path: '/call-for-papers/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const CallForPapersAcronymRoute = CallForPapersAcronymRouteImport.update({
-  id: '/call-for-papers/$acronym',
-  path: '/call-for-papers/$acronym',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AuthRegisterRoute = AuthRegisterRouteImport.update({
@@ -70,6 +66,18 @@ const AuthConfirmEmailRoute = AuthConfirmEmailRouteImport.update({
   path: '/confirm-email',
   getParentRoute: () => AuthRoute,
 } as any)
+const CallForPapersAcronymIndexRoute =
+  CallForPapersAcronymIndexRouteImport.update({
+    id: '/call-for-papers/$acronym/',
+    path: '/call-for-papers/$acronym/',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const CallForPapersAcronymSubmissionNumberRoute =
+  CallForPapersAcronymSubmissionNumberRouteImport.update({
+    id: '/call-for-papers/$acronym/submission/$number',
+    path: '/call-for-papers/$acronym/submission/$number',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -80,8 +88,9 @@ export interface FileRoutesByFullPath {
   '/auth/login': typeof AuthLoginRoute
   '/auth/logout': typeof AuthLogoutRoute
   '/auth/register': typeof AuthRegisterRoute
-  '/call-for-papers/$acronym': typeof CallForPapersAcronymRoute
   '/call-for-papers': typeof CallForPapersIndexRoute
+  '/call-for-papers/$acronym': typeof CallForPapersAcronymIndexRoute
+  '/call-for-papers/$acronym/submission/$number': typeof CallForPapersAcronymSubmissionNumberRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -92,8 +101,9 @@ export interface FileRoutesByTo {
   '/auth/login': typeof AuthLoginRoute
   '/auth/logout': typeof AuthLogoutRoute
   '/auth/register': typeof AuthRegisterRoute
-  '/call-for-papers/$acronym': typeof CallForPapersAcronymRoute
   '/call-for-papers': typeof CallForPapersIndexRoute
+  '/call-for-papers/$acronym': typeof CallForPapersAcronymIndexRoute
+  '/call-for-papers/$acronym/submission/$number': typeof CallForPapersAcronymSubmissionNumberRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -105,8 +115,9 @@ export interface FileRoutesById {
   '/auth/login': typeof AuthLoginRoute
   '/auth/logout': typeof AuthLogoutRoute
   '/auth/register': typeof AuthRegisterRoute
-  '/call-for-papers/$acronym': typeof CallForPapersAcronymRoute
   '/call-for-papers/': typeof CallForPapersIndexRoute
+  '/call-for-papers/$acronym/': typeof CallForPapersAcronymIndexRoute
+  '/call-for-papers/$acronym/submission/$number': typeof CallForPapersAcronymSubmissionNumberRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -119,8 +130,9 @@ export interface FileRouteTypes {
     | '/auth/login'
     | '/auth/logout'
     | '/auth/register'
-    | '/call-for-papers/$acronym'
     | '/call-for-papers'
+    | '/call-for-papers/$acronym'
+    | '/call-for-papers/$acronym/submission/$number'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -131,8 +143,9 @@ export interface FileRouteTypes {
     | '/auth/login'
     | '/auth/logout'
     | '/auth/register'
-    | '/call-for-papers/$acronym'
     | '/call-for-papers'
+    | '/call-for-papers/$acronym'
+    | '/call-for-papers/$acronym/submission/$number'
   id:
     | '__root__'
     | '/'
@@ -143,16 +156,18 @@ export interface FileRouteTypes {
     | '/auth/login'
     | '/auth/logout'
     | '/auth/register'
-    | '/call-for-papers/$acronym'
     | '/call-for-papers/'
+    | '/call-for-papers/$acronym/'
+    | '/call-for-papers/$acronym/submission/$number'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AuthRoute: typeof AuthRouteWithChildren
   AuthorRoute: typeof AuthorRoute
-  CallForPapersAcronymRoute: typeof CallForPapersAcronymRoute
   CallForPapersIndexRoute: typeof CallForPapersIndexRoute
+  CallForPapersAcronymIndexRoute: typeof CallForPapersAcronymIndexRoute
+  CallForPapersAcronymSubmissionNumberRoute: typeof CallForPapersAcronymSubmissionNumberRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -183,13 +198,6 @@ declare module '@tanstack/react-router' {
       path: '/call-for-papers'
       fullPath: '/call-for-papers'
       preLoaderRoute: typeof CallForPapersIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/call-for-papers/$acronym': {
-      id: '/call-for-papers/$acronym'
-      path: '/call-for-papers/$acronym'
-      fullPath: '/call-for-papers/$acronym'
-      preLoaderRoute: typeof CallForPapersAcronymRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/auth/register': {
@@ -227,6 +235,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthConfirmEmailRouteImport
       parentRoute: typeof AuthRoute
     }
+    '/call-for-papers/$acronym/': {
+      id: '/call-for-papers/$acronym/'
+      path: '/call-for-papers/$acronym'
+      fullPath: '/call-for-papers/$acronym'
+      preLoaderRoute: typeof CallForPapersAcronymIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/call-for-papers/$acronym/submission/$number': {
+      id: '/call-for-papers/$acronym/submission/$number'
+      path: '/call-for-papers/$acronym/submission/$number'
+      fullPath: '/call-for-papers/$acronym/submission/$number'
+      preLoaderRoute: typeof CallForPapersAcronymSubmissionNumberRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -252,8 +274,10 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuthRoute: AuthRouteWithChildren,
   AuthorRoute: AuthorRoute,
-  CallForPapersAcronymRoute: CallForPapersAcronymRoute,
   CallForPapersIndexRoute: CallForPapersIndexRoute,
+  CallForPapersAcronymIndexRoute: CallForPapersAcronymIndexRoute,
+  CallForPapersAcronymSubmissionNumberRoute:
+    CallForPapersAcronymSubmissionNumberRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

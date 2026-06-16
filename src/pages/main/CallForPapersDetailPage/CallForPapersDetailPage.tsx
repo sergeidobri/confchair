@@ -2,42 +2,46 @@ import { getFormatDate } from '@/utils/conference';
 import styles from './CallForPapersDetailPage.module.css';
 import { Button } from '@components/ui/Button/Button';
 import Heading from '@components/ui/Heading/Heading';
-import { Link, useLoaderData } from '@tanstack/react-router';
+import { useLoaderData } from '@tanstack/react-router';
 import DOMPurify from 'dompurify';
+import Link from '@/components/ui/Link/Link';
+import NotFoundPage from '../NotFoundPage/NotFoundPage';
 
 const CallForPapersDetailPage = () => {
-  const { conference } = useLoaderData({ from: '/call-for-papers/$acronym' });
+  const { conference } = useLoaderData({ from: '/call-for-papers/$acronym/' });
 
   if (!conference) {
-    return <div>Conference was not found</div>;
+    return <NotFoundPage />;
   }
   const cleanDescription = DOMPurify.sanitize(conference.description);
   return (
     <div>
-      <Heading text={conference.name} />
-      <div className={styles.buttons}>
-        {new Date(conference.submissionDeadline) >= new Date() && (
-          <Link to={'.'}>
-            <Button>Submit an abstract</Button>
-          </Link>
-        )}
-        {conference.siteUrl && (
-          <Link to={conference.siteUrl} target="_blank">
-            <Button>Learn More</Button>
-          </Link>
-        )}
+      <div className={styles.headerContainer}>
+        <Heading text={conference.name} />
+        <div className={styles.buttons}>
+          {new Date(conference.submissionDeadline) >= new Date() && (
+            <Link to={'.'}>
+              <Button>Submit an abstract</Button>
+            </Link>
+          )}
+          {conference.siteUrl && (
+            <Link to={conference.siteUrl} target="_blank">
+              <Button>Learn More</Button>
+            </Link>
+          )}
+        </div>
       </div>
 
       <div className={styles.infoContainer}>
         <div className={`${styles.infoBlock} ${styles.datesInfoBlock}`}>
-          <p>
+          <div>
             <p>Submission Deadline:</p>
             <p>{getFormatDate(conference.submissionDeadline)}</p>
-          </p>
-          <p>
+          </div>
+          <div>
             <p>Start Date:</p>
             <p>{getFormatDate(conference.startDate)}</p>
-          </p>
+          </div>
         </div>
         <div className={`${styles.infoBlock} ${styles.mainInfoBlock}`}>
           <div

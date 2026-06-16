@@ -1,8 +1,15 @@
+import React from 'react';
 import Heading from '@components/ui/Heading/Heading';
 import styles from './AuthWindow.module.css';
-import type { AuthWindowProps } from './auth-window.props';
 
-export const AuthWindow = ({ heading, description, children, additionalInfo }: AuthWindowProps) => {
+export interface Props {
+  heading: string;
+  description: string;
+  children: React.ReactNode;
+  additionalInfo?: React.ReactNode;
+}
+
+export const AuthWindow = ({ heading, description, children, additionalInfo }: Props) => {
   return (
     <div className={styles.windowContainer}>
       <div className={styles.window}>

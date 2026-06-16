@@ -1,0 +1,22 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.collapseButton {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--link-color);
+  cursor: pointer;
+}
+
+.chevron {
+  transition: transform 150ms ease-in-out;
+}
+
+.chevronRotate {
+  transform: rotate(-90deg);
+}

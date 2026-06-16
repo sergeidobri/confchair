@@ -1,5 +1,6 @@
+import Link from '@/components/ui/Link/Link';
 import styles from './Nav.module.css';
-import { Link } from '@tanstack/react-router';
+import { useLocation } from '@tanstack/react-router';
 
 interface NavItemMeta {
   primary?: string;
@@ -20,6 +21,9 @@ interface NavProps {
 }
 
 export const Nav = ({ leftItems, rightItems, containerClass }: NavProps) => {
+  const location = useLocation();
+  const pathname = location.pathname;
+
   return (
     <nav className={styles.navContainer} role="navigation">
       {[leftItems, rightItems].map((items, itemsIndex) => (
@@ -28,11 +32,10 @@ export const Nav = ({ leftItems, rightItems, containerClass }: NavProps) => {
           className={`${styles.container} ${containerClass ? containerClass : ''}`}
         >
           {items.map((item, index) => (
-            <li
-              key={itemsIndex * items.length + index}
-              className={`${styles.link} ${item.itemClass ? item.itemClass : ''}`}
-            >
-              <Link to={item.to}>{item.label}</Link>
+            <li key={itemsIndex * items.length + index} className={item.itemClass}>
+              <Link to={item.to} underline={pathname == item.to || pathname + '/' == item.to}>
+                {item.label}
+              </Link>
               {item.meta && (
                 <div className={styles.navItemMeta}>
                   {item.meta.primary && (

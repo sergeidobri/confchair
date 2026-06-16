@@ -1,0 +1,59 @@
+.tableContainer {
+  margin-top: 16px;
+  width: 100%;
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+}
+
+.table thead {
+  border-bottom-width: 0.1875rem;
+  border-color: rgb(231, 234, 240);
+}
+
+.table tbody tr {
+  border-bottom-width: 0.0625rem;
+  border-color: rgb(231, 234, 240);
+}
+
+.tableHeader {
+  color: var(--link-color);
+}
+
+.breakable {
+  word-break: break-word;
+}
+
+.tableElement {
+  padding: 10px 20px;
+  font-size: medium;
+  text-align: center;
+}
+
+.table tbody tr:nth-child(2n + 1) {
+  background-color: rgba(111, 120, 135, 0.0375);
+}
+
+.actionsContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.button {
+  cursor: pointer;
+  color: var(--link-color);
+}
+
+.statusContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.statusIcon {
+  margin: 0 auto;
+}

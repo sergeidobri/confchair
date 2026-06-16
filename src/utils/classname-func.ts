@@ -1,4 +1,4 @@
-export default function cn(...args: (string | { [key: string]: boolean })[]) {
+export default function cn(...args: (string | { [key: string]: boolean } | undefined)[]) {
   const classList: string[] = [];
   args.forEach(item => {
     if (typeof item === 'string') {

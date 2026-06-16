@@ -27,11 +27,11 @@
 }
 
 .link {
-  color: rgb(1, 114, 173);
+  color: var(--link-color);
   text-decoration: underline;
 }
 
 .link:hover {
-  color: rgb(1, 88, 135);
+  color: var(--link-hover-color);
   text-decoration: underline;
 }

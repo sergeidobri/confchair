@@ -48,7 +48,6 @@ export const useUserForm = ({ user, onSubmit, onCancel }: UseUserFormProps) => {
       Object.entries(data).filter(([_, value]) => value != null),
     ) as RemoveNullable<UserFormData>;
     try {
-      console.log(data);
       mutation.mutate(cleanData);
       onSubmit(data);
     } catch (error: any) {

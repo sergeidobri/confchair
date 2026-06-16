@@ -21,17 +21,6 @@
   justify-content: flex-end;
 }
 
-.link a {
-  padding: 16px 0;
-  color: rgb(1, 114, 173);
-  text-decoration: none;
-}
-
-.link a:hover {
-  color: rgb(2, 101, 154);
-  text-decoration: underline;
-}
-
 .hasMeta {
   display: flex;
   flex-direction: column;

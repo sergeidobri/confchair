@@ -1,5 +1,5 @@
 import styles from './Nav.module.css';
-import { Route as callForPapersRoute } from '@/routes/call-for-papers.index';
+import { Route as callForPapersRoute } from '@/routes/call-for-papers/index';
 import { Route as loginRoute } from '@routes/auth/login';
 import { Route as registerRoute } from '@routes/auth/register';
 import { Nav } from './Nav';

@@ -1,3 +1,4 @@
+import cn from '@/utils/classname-func';
 import styles from './Heading.module.css';
 
 interface Props {
@@ -6,7 +7,7 @@ interface Props {
 }
 
 const Heading = ({ text, headingClass }: Props) => {
-  return <h1 className={`${styles.heading} ${headingClass ? headingClass : ''}`}>{text}</h1>;
+  return <h1 className={cn(headingClass, styles.heading)}>{text}</h1>;
 };
 
 export default Heading;

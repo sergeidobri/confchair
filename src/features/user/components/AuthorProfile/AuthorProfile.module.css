@@ -1,0 +1,6 @@
+.authorHeader {
+  display: flex;
+  gap: 10px;
+  align-items: baseline;
+  margin-bottom: 15px;
+}

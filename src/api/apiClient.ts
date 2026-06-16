@@ -28,7 +28,7 @@ apiClient.interceptors.request.use(config => {
 
 // Response interceptor
 apiClient.interceptors.response.use(
-  response => response, // при успешном запросе(2xx) -> ничего не делаем
+  response => response, // при пешном запросе(2xx) -> ничего не делаем
   async (error: AxiosError) => {
     // обрабатываем ошибки сервера
     const originalRequest = error.config as InternalAxiosRequestConfig & { _retry?: boolean }; // сохраняем изначальный запрос(упавший с ошибкой)

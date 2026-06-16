@@ -11,7 +11,7 @@ export const Route = createFileRoute('/auth/logout')({
     } finally {
       useAuthStore.getState().clearAuth();
     }
-
+    
     throw redirect({ to: '/auth/login' });
   },
 

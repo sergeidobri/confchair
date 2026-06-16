@@ -1,0 +1,13 @@
+.link {
+  color: var(--link-color);
+  cursor: pointer;
+}
+
+.link:hover {
+  text-decoration: underline;
+  color: var(--link-hover-color);
+}
+
+.underline {
+  text-decoration: underline;
+}

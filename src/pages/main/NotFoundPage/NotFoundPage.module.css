@@ -1,0 +1,14 @@
+.fullInset {
+  width: 100%;
+  margin: auto 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.text {
+  position: relative;
+  top: -3rem;
+  font-weight: bold;
+  font-size: 3rem;
+}

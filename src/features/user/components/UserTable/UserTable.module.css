@@ -5,6 +5,7 @@
   align-items: center;
   width: auto;
   max-width: 600px;
+  margin-top: 1rem;
 }
 
 .btnCancel {

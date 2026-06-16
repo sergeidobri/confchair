@@ -1,8 +1,9 @@
 // import apiClient from '@api/apiClient';
 // import { CALL_FOR_PAPERS_ENDPOINTS } from './endpoint';
+import type { Conference } from '@/types/conference';
 import type { getCallForPapersByAcronymRequest } from './types';
 
-const conferences = [
+const conferences: Conference[] = [
   {
     id: 'a1b2c3d4-e5f6-7890-abcd-ef1234567890',
     name: 'International Conference on Advanced Computing',
@@ -11,7 +12,7 @@ const conferences = [
       'A premier conference focusing on cutting-edge research in computer science, artificial intelligence, and distributed systems. The event brings together leading researchers, practitioners, and industry experts to share their latest findings and innovations.',
     startDate: '2025-06-15',
     startTime: '09:00:00',
-    submissionDeadline: '2026-02-15T23:59:59',
+    submissionDeadline: '2027-02-15T23:59:59',
     acronym: 'icac2025',
     shortName: null,
     email: 'info@icac2025.org',
@@ -27,7 +28,7 @@ const conferences = [
       'An <b>international</b> forum dedicated to exploring sustainable technological solutions for global challenges. The <b>international</b> summit covers renewable energy, green computing, environmental informatics, and circular economy technologies.',
     startDate: '2025-09-22',
     startTime: '08:30:00',
-    submissionDeadline: '2026-04-30T23:59:59',
+    submissionDeadline: '2027-04-30T23:59:59',
     acronym: 'gsum2025',
     shortName: 'Global Summit',
     email: 'contact@gsum2025.com',
@@ -87,10 +88,10 @@ const conferences = [
 
 export const callForPapersApi = {
   getCallForPapers: () => {
-    return conferences;
+    return Promise.resolve(conferences);
   },
   getCallForPapersByAcronym: ({ acronym }: getCallForPapersByAcronymRequest) => {
     // apiClient.post(CALL_FOR_PAPERS_ENDPOINTS.GET_CALL_FOR_PAPERS_BY_ACRONYM, data),
-    return conferences.find(conf => conf.acronym == acronym);
+    return Promise.resolve(conferences.find(conf => conf.acronym == acronym));
   },
 };

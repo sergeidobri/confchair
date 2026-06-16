@@ -3,6 +3,12 @@
   gap: 15px;
 }
 
+.headerContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
 .infoContainer {
   margin-top: 2rem;
   display: flex;

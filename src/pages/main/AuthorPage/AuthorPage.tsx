@@ -1,42 +1,28 @@
 import styles from './AuthorPage.module.css';
-import { useState } from 'react';
-import UserTable from '@features/user/components/UserTable/UserTable';
 import { useQuery } from '@tanstack/react-query';
 import { usersApi } from '@api/users/api';
-import Heading from '@components/ui/Heading/Heading';
+import AuthorProfile from '@/features/user/components/AuthorProfile/AuthorProfile';
+import Submission from '@/features/user/components/Submission/Submission';
 
 const AuthorPage = () => {
-  const { data: user } = useQuery({ queryKey: ['getUser'], queryFn: usersApi.getUser });
+  const {
+    data: user,
+    isError,
+    isPending,
+  } = useQuery({ queryKey: ['getUser'], queryFn: usersApi.getUser });
 
-  const [isEditing, setIsEditing] = useState(false);
-
-  const handleEditClick = () => {
-    setIsEditing(true);
-  };
-
-  const handleBtnClick = () => {
-    setIsEditing(false);
-  };
+  if (isPending) {
+    return <div>Loading...</div>;
+  }
+  if (isError) {
+    return <div>Error occured</div>;
+  }
 
   return (
-    <>
-      <div className={styles.authorHeader}>
-        <Heading text="Author Profile" />
-        {!isEditing && (
-          <button onClick={handleEditClick} className={styles.editLink}>
-            Edit
-          </button>
-        )}
-      </div>
-      {user && (
-        <UserTable
-          isEditable={isEditing}
-          user={user}
-          onSave={handleBtnClick}
-          onCancel={handleBtnClick}
-        />
-      )}
-    </>
+    <div className={styles.container}>
+      <AuthorProfile user={user} />
+      <Submission />
+    </div>
   );
 };
 

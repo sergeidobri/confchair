@@ -1,12 +1,12 @@
 .btn {
-  margin-top: 1rem;
+  /* margin-top: 1rem; */
   box-sizing: border-box;
   font-size: 1rem;
   cursor: pointer;
   max-width: 10.5rem;
   width: 100%;
-  border: 0.0625rem solid rgb(1, 114, 173);
-  color: rgb(1, 114, 173);
+  border: 0.0625rem solid var(--link-color);
+  color: var(--link-color);
   border-radius: 0.25rem;
   padding: 0.75rem;
   transition:
@@ -15,6 +15,6 @@
 }
 
 .btn:hover {
-  background-color: rgb(1, 114, 173);
+  background-color: var(--link-color);
   color: #fff;
 }

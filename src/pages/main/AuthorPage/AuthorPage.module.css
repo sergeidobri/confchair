@@ -1,16 +1,5 @@
-.authorHeader {
+.container {
   display: flex;
-  gap: 10px;
-  align-items: baseline;
-  margin-bottom: 15px;
-}
-
-.editLink {
-  color: rgb(1, 114, 173);
-  cursor: pointer;
-}
-
-.editLink:hover {
-  text-decoration: underline;
-  color: rgb(1, 88, 135);
+  flex-direction: column;
+  gap: 2.25rem;
 }

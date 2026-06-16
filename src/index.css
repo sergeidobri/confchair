@@ -6,6 +6,8 @@
     sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   --text-title-color: #424751;
   --text-color: #373c44;
+  --link-color: rgb(1, 114, 173);
+  --link-hover-color: rgb(1, 88, 135);
   --font-size: calc(0.36vw + 14.4px);
   --table-border-color: rgb(231, 234, 240);
   --color-required-star: rgb(239, 68, 68);
