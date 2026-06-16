@@ -1,6 +1,7 @@
 .table {
   width: 100%;
-  table-layout: fixed;
+  overflow-x: auto;
+  min-width: 600px;
   font-size: 1rem;
   border-collapse: collapse;
   margin-bottom: 1rem;
@@ -19,7 +20,7 @@
   white-space: normal;
   text-align: start;
   font-weight: 400;
-  width: 85%;
+  width: 87.5%;
   padding: 0.5rem 1rem;
 }
 
@@ -30,4 +31,9 @@
 .keywordsCell {
   display: flex;
   flex-direction: column;
+}
+
+.tableContainer {
+  overflow-x: auto;
+  width: 100%;
 }

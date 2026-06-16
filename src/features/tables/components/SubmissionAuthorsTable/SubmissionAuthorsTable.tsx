@@ -1,9 +1,9 @@
-import cn from '@/utils/classname-func';
 import styles from './SubmissionAuthorsTable.module.css';
 import type { User } from '@/types/user';
-import { flexRender, getCoreRowModel, useReactTable, type ColumnDef } from '@tanstack/react-table';
+import { type ColumnDef } from '@tanstack/react-table';
 import { Check, X } from 'lucide-react';
 import { useMemo } from 'react';
+import BaseTable from '../BaseTable/BaseTable';
 
 interface Props {
   authors: TData[];
@@ -69,44 +69,7 @@ const SubmissionAuthorsTable = ({ authors }: Props) => {
     [],
   );
 
-  const tableData = useMemo(() => authors, [authors]);
-
-  const table = useReactTable({
-    data: tableData,
-    columns,
-    getCoreRowModel: getCoreRowModel(),
-  });
-
-  return (
-    <div className={styles.tableContainer}>
-      <table className={styles.table}>
-        <thead>
-          {table.getHeaderGroups().map(headerGroup => (
-            <tr key={headerGroup.id}>
-              {headerGroup.headers.map(header => (
-                <th key={header.id} className={cn(styles.tableHeader, styles.tableElement)}>
-                  {header.isPlaceholder
-                    ? null
-                    : flexRender(header.column.columnDef.header, header.getContext())}
-                </th>
-              ))}
-            </tr>
-          ))}
-        </thead>
-        <tbody>
-          {table.getRowModel().rows.map(row => (
-            <tr key={row.id}>
-              {row.getVisibleCells().map(cell => (
-                <td key={cell.id} className={styles.tableElement}>
-                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                </td>
-              ))}
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  );
+  return <BaseTable data={authors} columns={columns} />;
 };
 
 export default SubmissionAuthorsTable;

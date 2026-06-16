@@ -2,12 +2,13 @@ import { SubmissionStatuses } from '@/lib/submissions';
 import styles from './SubmissionTable.module.css';
 import type { Submission, SubmissionStatusType } from '@/types/submissions';
 import type { User } from '@/types/user';
-import cn from '@/utils/classname-func';
 import { dateFormatter } from '@/utils/conference';
-import { flexRender, getCoreRowModel, useReactTable, type ColumnDef } from '@tanstack/react-table';
+import { type ColumnDef } from '@tanstack/react-table';
 import { Download, Search } from 'lucide-react';
 import { useMemo } from 'react';
 import Link from '@/components/ui/Link/Link';
+import BaseTable from '../BaseTable/BaseTable';
+import cn from '@/utils/classname-func';
 
 interface Props {
   submissions: Submission[];
@@ -47,12 +48,12 @@ const SubmissionTable = ({ submissions }: Props) => {
       {
         accessorKey: 'title',
         header: 'Title',
-        cell: ({ getValue }) => <span className={styles.breakable}>{getValue() as string}</span>,
+        cell: ({ getValue }) => <span className={styles.variableCell}>{getValue() as string}</span>,
       },
       {
         accessorKey: 'topic',
         header: 'Topic',
-        cell: ({ getValue }) => <span className={styles.breakable}>{getValue() as string}</span>,
+        cell: ({ getValue }) => <span className={styles.variableCell}>{getValue() as string}</span>,
       },
       {
         accessorKey: 'presentationFormat',
@@ -71,7 +72,7 @@ const SubmissionTable = ({ submissions }: Props) => {
             {(getValue() as SubmissionStatusType[]).map(sub => {
               const status = SubmissionStatuses[sub];
               return (
-                <span key={sub} style={status.style}>
+                <span key={sub} style={status.style} className={styles.statusCell}>
                   {status.title}
                 </span>
               );
@@ -83,44 +84,7 @@ const SubmissionTable = ({ submissions }: Props) => {
     [],
   );
 
-  const tableData = useMemo(() => submissions, [submissions]);
-
-  const table = useReactTable({
-    data: tableData,
-    columns,
-    getCoreRowModel: getCoreRowModel(),
-  });
-
-  return (
-    <div className={styles.tableContainer}>
-      <table className={styles.table}>
-        <thead>
-          {table.getHeaderGroups().map(headerGroup => (
-            <tr key={headerGroup.id}>
-              {headerGroup.headers.map(header => (
-                <th key={header.id} className={cn(styles.tableHeader, styles.tableElement)}>
-                  {header.isPlaceholder
-                    ? null
-                    : flexRender(header.column.columnDef.header, header.getContext())}
-                </th>
-              ))}
-            </tr>
-          ))}
-        </thead>
-        <tbody>
-          {table.getRowModel().rows.map(row => (
-            <tr key={row.id}>
-              {row.getVisibleCells().map(cell => (
-                <td key={cell.id} className={styles.tableElement}>
-                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                </td>
-              ))}
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  );
+  return <BaseTable columns={columns} data={submissions} />;
 };
 
 export default SubmissionTable;

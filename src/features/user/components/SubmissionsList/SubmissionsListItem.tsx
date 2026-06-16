@@ -3,7 +3,7 @@ import styles from './SubmissionsList.module.css';
 import type { Submission } from '@/types/submissions';
 import { useState } from 'react';
 import cn from '@/utils/classname-func';
-import SubmissionTable from '../SubmissionTable/SubmissionTable';
+import SubmissionTable from '../../../tables/components/SubmissionTable/SubmissionTable';
 
 interface Props {
   forum: string;

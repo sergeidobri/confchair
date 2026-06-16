@@ -7,7 +7,7 @@ import NotFoundPage from '../NotFoundPage/NotFoundPage';
 import Heading from '@/components/ui/Heading/Heading';
 import { Button } from '@/components/ui/Button/Button';
 import SubmissionDetailTable from '@/features/user/components/SubmissionDetailTable/SubmissionDetailTable';
-import SubmissionAuthorsTable from '@/features/user/components/SubmissionAuthorsTable/SubmissionAuthorsTable';
+import SubmissionAuthorsTable from '@/features/tables/components/SubmissionAuthorsTable/SubmissionAuthorsTable';
 
 const SubmissionDetailPage = () => {
   const { submission } = useLoaderData({ from: '/call-for-papers/$acronym/submission/$number' });

@@ -8,10 +8,11 @@ interface Props {
   className?: string;
   underline?: boolean;
   target?: '_blank' | '_self' | '_parent' | '_top' | '_unfencedTop';
+  params?: any;
   onClick?: () => void;
 }
 
-const Link = ({ children, to, className, target, underline = false, onClick }: Props) => {
+const Link = ({ children, to, className, target, underline = false, params, onClick }: Props) => {
   if (!to) {
     return (
       <button
@@ -28,6 +29,7 @@ const Link = ({ children, to, className, target, underline = false, onClick }: P
         onClick={onClick}
         className={cn(styles.link, className, { [styles.underline]: underline })}
         target={target}
+        params={params}
       >
         {children}
       </LinkReact>

@@ -6,9 +6,7 @@ export const setNavigate = (navigate: (path: string) => void) => {
 
 export const navigate = (path: string) => {
   if (!navigateTo) {
-    throw new Error(
-      'Navigation is not ready. Make sure the router has mounted.'
-    );
+    throw new Error('Navigation is not ready. Make sure the router has mounted.');
   }
   navigateTo(path);
 };

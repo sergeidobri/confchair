@@ -1,4 +1,5 @@
 .link {
+  width: fit-content;
   color: var(--link-color);
   cursor: pointer;
 }

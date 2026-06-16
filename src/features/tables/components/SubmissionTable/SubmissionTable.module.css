@@ -1,0 +1,27 @@
+.actionsContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.button {
+  cursor: pointer;
+  color: var(--link-color);
+}
+
+.statusContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.variableCell {
+  word-break: break-word;
+  display: inline-block;
+  min-width: 100px;
+}
+
+.statusCell {
+  min-width: 100px;
+}

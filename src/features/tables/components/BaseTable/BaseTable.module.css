@@ -6,6 +6,7 @@
 
 .table {
   width: 100%;
+  /* table-layout: fixed; */
 }
 
 .table thead {
@@ -28,7 +29,21 @@
 
 .tableElement {
   padding: 10px 20px;
+}
+
+.fontNormal {
   font-size: medium;
+}
+
+.fontLarge {
+  font-size: 1rem;
+}
+
+.alignStart {
+  text-align: start;
+}
+
+.alignCenter {
   text-align: center;
 }
 

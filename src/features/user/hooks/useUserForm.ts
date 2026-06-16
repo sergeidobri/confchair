@@ -25,9 +25,6 @@ export const useUserForm = ({ user, onSubmit, onCancel }: UseUserFormProps) => {
       queryClient.setQueryData(['getUser'], updatedUser);
       form.reset({ ...updatedUser });
     },
-    onError: error => {
-      console.error('Ошибка при обновлении пользователя:', error);
-    },
   });
 
   const form = useForm<UserFormData>({

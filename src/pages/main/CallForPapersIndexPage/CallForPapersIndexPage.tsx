@@ -1,5 +1,5 @@
 import Heading from '@components/ui/Heading/Heading';
-import CallForPapersTable from '@/features/callForPapers/components/CallForPapersTable/CallForPapersTable';
+import CallForPapersTable from '@/features/tables/components/CallForPapersTable/CallForPapersTable';
 import { useQuery } from '@tanstack/react-query';
 import { callForPapersApi } from '@/api/callForPapers/api';
 
